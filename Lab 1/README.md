@@ -60,9 +60,9 @@ find / -type f -ctime 1 ! -user root
 ```
 Để `ls -l` các file này, ta sẽ sử dụng `-exec` trong command `find`:
 ```
-sudo find / -type f -ctime 1 ! -user root 2> /dev/null -exec ls -l {} +
+sudo find / -type f -ctime 1 ! -user root -exec ls -l {} +
 ```
-> Vì điểm bắt dầu tìm là `/` nên ta cần quyền admin với `sudo`. Bên cạnh đó, có 1 số file ta không được truy suất kể cả với sudo và sẽ dẫn tới lỗi `Permission denied` nên ta có thể loại bỏ các lỗi này với redirection `2> /dev/null`. Ở đây `2` là STDERR và `/dev/null` là một device đặc biệt trong Linux thường được dùng cho mục đích tương tự.
+> Vì điểm bắt dầu tìm là `/` nên ta cần quyền admin với `sudo`.
 
 
 ## Câu 4
@@ -124,5 +124,27 @@ Có cách nào để ngăn chặn việc lưu trữ lịch sử lệnh hay khôn
 
 ### Answer
 Có 2 cách:
-- Vì lịch sử câu lệnh được lưu trên file, nên ta có thể xóa hoặc làm rỗng file này sau mỗi lần sử dụng.
+- Vì lịch sử câu lệnh được lưu trên file, nên ta có thể xóa hoặc làm rỗng file này sau mỗi lần sử dụng. Một cách nhanh gọn là sử dụng option `-c` của chính câu lệnh `history`:` history -c`.
 - Cấu hình shell. Để cấu hình shell, ta mở file cấu hình (file cấu hình thường có tên là `.<shell>rc` nằm tại thư mục  home của người dùng, ví dụ trên Kali sẽ là `/home/kali/.zshrc`) và set giá trị cho `HISTSIZE=n` với `n` là số câu lệnh ta muốn lưu. Để không lưu lịch sử thì ta set `HISTSIZE=0`.
+
+## Câu 9
+### Question
+Ngoài cách sử dụng tiện ích history expansion, còn cách nào để thực hiện lại các lệnh đã nhập một cách nhanh chóng hay không? Nếu có, hãy mô tả cách làm.
+
+### Answer
+
+## Câu 10
+### Question
+Như đã biết, khi sử dụng toán tử `>` để xuất kết quả vô tập tin, nếu tập tin đã tồn tại, nội dung trong tập tin sẽ bị thay thế bằng nội dung mới. Vậy, có cách nào để hoàn tác lại quá trình này hay không? Nếu có, hãy mô tả cách làm.
+
+### Solution
+
+## Câu 11
+### Description
+Sử dụng lệnh `cat` cùng với lệnh `sort` để sắp xếp lại nội dung của tập tin `/etc/passwd`, sau đó lưu kết quả vào một tập tin mới có tên `passwd_new` và thực hiện đến số lượng dòng có trong tập tin mới.
+
+### Solution
+Đầu tiên, ta đọc file `/etc/passwd`, sau đó pipeline sang lệnh `sort` để sắp xếp lại nội dung. Sau đó, ta redirect nội dung đã sắp xếp vào file `passwd_new` với redirection operator `>`. Cuối cùng, ta pipeline nội dung đã sắp xếp vào lệnh `wc` với option `-l` để đêm số dòng.
+```
+└─$ cat /etc/passwd | sort > password_new | wc -l
+```
