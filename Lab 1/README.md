@@ -138,6 +138,7 @@ Ngoài cách sử dụng tiện ích history expansion, còn cách nào để th
 Như đã biết, khi sử dụng toán tử `>` để xuất kết quả vô tập tin, nếu tập tin đã tồn tại, nội dung trong tập tin sẽ bị thay thế bằng nội dung mới. Vậy, có cách nào để hoàn tác lại quá trình này hay không? Nếu có, hãy mô tả cách làm.
 
 ### Solution
+Nếu ta có sử dụng các VCS như `git` và nội dung cũ của tập tin đã được staged thì ta có thể recover thông qua các VCS này. Nếu ta sử dụng git, ta có 2 subcommand là `reset` và `revert`. Với `git reset`, ta sẽ rollback trạng thái và nội dung của file về lại 1 checkpoint nào đó và các checkpoint phía sau sẽ bị ẩn/xóa (tùy ta chọn). Còn đối với `git revert` ta cũng sẽ rollback trạng thái và nội dung của file về lại 1 checkpoint nhưng sẽ không có checkpoint nào bị xóa mà sẽ có thêm 1 commit nữa được tạo để đánh dấu việc revert này.
 
 ## Câu 11
 ### Description
