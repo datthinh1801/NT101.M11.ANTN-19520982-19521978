@@ -108,4 +108,21 @@ Vậy để ngăn dịch vụ SSH chạy cùng hệ thống, ta dùng câu lện
 Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
 Executing: /lib/systemd/systemd-sysv-install disable ssh
 ```
- 
+
+## Câu 7
+### Question
+Lịch sử các lệnh thực ra được lưu trữ ở đâu? Liệt kê các ưu, nhược điểm khi thực hiện lưu trữ lại các lệnh đã nhập?
+
+### Answer
+- Lịch sử các lệnh được lưu tại file `/home/user/.<shell>_history`. Nếu ta sử dụng `bash` thì lịch sử sẽ được lưu tại `/home/user/.bash_history`. Kali Linux sử `zsh` nên lịch sử sẽ được lưu tại `/home/user/.zsh_history`.
+- Ưu điểm của việc lưu lịch sử các câu lệnh là ta có thể dễ dàng xem lại, sử dụng lại các câu lệnh cũ nhằm tránh gõ đi gõ lại một câu lệnh nhiều lần.
+- Nhược điểm là nếu có 1 người khác sử dụng máy tính của chúng ta, với `user` của chúng ta và họ xem được command history thì sẽ biết được các hoạt động của chúng ta trên máy.
+
+## Câu 8
+### Question
+Có cách nào để ngăn chặn việc lưu trữ lịch sử lệnh hay không? Nếu có, hãy mô tả cách làm.
+
+### Answer
+Có 2 cách:
+- Vì lịch sử câu lệnh được lưu trên file, nên ta có thể xóa hoặc làm rỗng file này sau mỗi lần sử dụng.
+- Cấu hình shell. Để cấu hình shell, ta mở file cấu hình (file cấu hình thường có tên là `.<shell>rc` nằm tại thư mục  home của người dùng, ví dụ trên Kali sẽ là `/home/kali/.zshrc`) và set giá trị cho `HISTSIZE=n` với `n` là số câu lệnh ta muốn lưu. Để không lưu lịch sử thì ta set `HISTSIZE=0`.
