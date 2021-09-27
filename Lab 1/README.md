@@ -268,3 +268,43 @@ The IP Address 72.133.47.242 has hit 8
 The IP Address 70.194.129.34 has hit 8
 The IP Address 201.21.152.44 has hit 1
 ```
+
+## Câu 14
+### Description
+Hãy cho biết đường đẫn thực thi của 2 lệnh `wget` và `curl`?
+
+### Solution
+```
+└─$ which wget                                                          
+/usr/bin/wget
+
+└─$ which curl
+/usr/bin/curl
+```
+
+## Câu 15
+### Question
+Theo bạn, trong 2 lệnh tải về `wget` và `curl`, lệnh nào ưu việt hơn? Giải thích?
+
+### Answer
+| | `wget` | `curl` |
+|---|---|---|
+| Công dụng chính | Tải tài nguyên, thường là file. | Tải tài nguyên và có thể thực hiện 1 số tác vụ khác của 1 web browser. |
+| Đặc điểm | Là 1 chương trình độc lập, không phụ thuộc vào thư viện bên ngoài. | Phụ thuộc vào thư viện `libcurl`. |
+| | Xử lý việc tỉ file, đặc biệt là trên mạng yếu, bất ổn định tốt. Nhưng chỉ hỗ trợ HTTP, HTTPS và FTP. | Tải file tốt tuy không tối ưu bằng `wget`. Nhưng `curl` hỗ trợ hầu như mội giao thức internet từ FTP, FTPS, HTTP, HTTPS đến IMAP, IMAPS, LDAPS, MQTT, POP3, SMTP,... |
+| | Có thể resume aborted downloads. | Không thấy đề cập trong [document](https://everything.curl.dev/). |
+| | Không thấy đề cập. | Hỗ trợ URL globbing nên có thể tải nhiều file cùng lúc chỉ với 1 câu lệnh. |
+
+Vậy nếu ta cần tải file 1 cách nhanh chóng, ta nên dùng `wget`. Trong trường hợp giao thức ta sử dụng không được hỗ trợ bởi `wget` hoặc tác vụ cần thực hiện phức tạp hơn, ta nên dùng `curl`.
+
+## Câu 16
+### Question
+Có thể sử dụng lệnh `curl` để thay đổi các HTTP header được hay không? Nếu được, cho ví dụ?
+
+### Answer
+`curl` hỗ trợ thay đổi HTTP header.  
+
+Để thay đổi header ta dùng option `-H` hoặc `--header`, theo sau là 1 chuỗi ở dạng `"Header name: value"`. Nếu ta sử dụng `-H` với 1 header đã được set trước đó thì header này sẽ được cập nhật theo giá trị của chúng ta. Nếu ta sử dụng `-H` với 1 header chưa được set thì `curl` sẽ thêm header này vào request. Ví dụ:
+```
+curl -H "User-Agent: Edge" -H "X-Forwarded-For: 1.1.1.1" www.site.com
+```
