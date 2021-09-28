@@ -366,4 +366,20 @@ Thực hiện lại chi tiết kịch bản Reverse Shell và Bind Shell sử d�
 ### Question
 So sánh ưu và nhược điểm khi sử dụng Reverse Shell và Bind Shell? Khi nào nên sử dụng Bind Shell? Khi nào nên sử dụng Reverse Shell?
 
+## Câu 23
+### Question
+Thực hiện trao đổi tập tin, bind shell và reverse shell sử dụng PowerShell 
+
+### trao đổi tập tin
+
+![image](https://user-images.githubusercontent.com/31529599/135124226-801918a0-f790-4c74-9650-4174b0011aa3.png)
+
+### Bind Shell
+
+![image](https://user-images.githubusercontent.com/31529599/135124372-e4211462-9991-4f50-8bf0-795c46c9e8fc.png)
+
+### Reverse Shell
+
+![image](https://user-images.githubusercontent.com/31529599/135124650-10c5e588-f41a-4940-978d-0bee14a0dec0.png)
+
 
