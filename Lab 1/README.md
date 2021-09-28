@@ -308,3 +308,62 @@ Có thể sử dụng lệnh `curl` để thay đổi các HTTP header được 
 ```
 curl -H "User-Agent: Edge" -H "X-Forwarded-For: 1.1.1.1" www.site.com
 ```
+## Câu 17-22 : Triển khai ứng dụng chat cơ bản trên hai máy Kali và Windows.
+## Câu 17
+### Question
+Máy nào đóng vai trò là server?
+
+![image](https://user-images.githubusercontent.com/31529599/135111634-3e0ab1e1-6ead-429c-8591-b1598c8e9268.png)
+
+Linux listen ở port 4444, đóng vai trò là server
+
+
+## Câu 18
+### Question
+Máy nào đóng vai trò là client?
+
+Windows đóng vai trò là client
+
+## Câu 19
+### Question
+Nếu khai báo lệnh `nc -lvnp 4444`thì thật chất, port 4444 được mở ở máy nào? 
+
+Nếu khai báo lệnh trên thì port 4444 được mở ở máy server (Kali) vì option `-l` là chỉ định netcat listening ở port 4444.
+
+## Câu 20
+### Question 
+Thực hiện chuyển tập tin wget.exe trên máy Kali sang máy Windows 10
+
+![image](https://user-images.githubusercontent.com/31529599/135114439-9c1e726a-1052-4815-8a13-20d08f1ce54b.png)
+
+Ở máy Windows, tiến hành listening port 4444 và chuyển tiếp kết quả vào tập tin incomming.exe
+
+Ở máy Kali, sẽ gởi tập tin wget.exe tới máy windows thông qua port 4444.
+
+Cuối cùng, test thử file đã nhận.
+
+## Câu 21
+### Question
+Thực hiện lại chi tiết kịch bản Reverse Shell và Bind Shell sử dụng netcat.
+
+#### Bind Shell
+
+![image](https://user-images.githubusercontent.com/31529599/135115790-2bb8c7e0-5cc2-4bf9-be41-0c013eb905b2.png)
+
+Ở máy Windows thực hiện lắng nghe tại port 4444 và sử dụng option `-e` để chuyển hướng lệnh.
+
+Ở máy Kali, kết nối tới máy windows ở port 4444 để thực thi command `cmd`
+
+#### Reverse Shell
+
+![image](https://user-images.githubusercontent.com/31529599/135116634-cf0c7256-4988-4d76-baf6-0af0d303ea4b.png)
+
+Ở máy Kali thực hiện lắng nghe tại port 4444
+
+Ở máy Windows thực hiện kết nối tới máy Kali với option `-e` để cung cấp `cmd` cho server
+
+## Câu 22
+### Question
+So sánh ưu và nhược điểm khi sử dụng Reverse Shell và Bind Shell? Khi nào nên sử dụng Bind Shell? Khi nào nên sử dụng Reverse Shell?
+
+
