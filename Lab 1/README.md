@@ -79,7 +79,7 @@ tcp       LISTEN     0           128                       [::]:22              
 tcp       LISTEN     0           511                          *:80                        *:*                    
 ```
 
-Với option `-l` để liệt kê các ports mà máy đang lắng nghe, `-u` để liệt kệ các UDP sockets và `-t` để liệt kê các `TCP sockets. Cuối cùng, `-n` để show địa chỉ IP mà không cần phân giải tên miền. Việc này sẽ giúp giảm thời gian thực thi của câu lệnh.
+Với option `-l` để liệt kê các ports mà máy đang lắng nghe, `-u` để liệt kệ các UDP sockets và `-t` để liệt kê các `TCP` sockets. Cuối cùng, `-n` để show địa chỉ IP mà không cần phân giải tên miền. Việc này sẽ giúp giảm thời gian thực thi của câu lệnh.
 
 ## Câu 5
 ### Question
@@ -315,70 +315,83 @@ Máy nào đóng vai trò là server?
 
 ![image](https://user-images.githubusercontent.com/31529599/135111634-3e0ab1e1-6ead-429c-8591-b1598c8e9268.png)
 
-Linux listen ở port 4444, đóng vai trò là server
+### Answer
+
+Linux listen ở port 4444, đóng vai trò là server.
 
 
 ## Câu 18
 ### Question
 Máy nào đóng vai trò là client?
 
-Windows đóng vai trò là client
+![image](https://user-images.githubusercontent.com/31529599/135111634-3e0ab1e1-6ead-429c-8591-b1598c8e9268.png)
+
+### Answer
+
+Windows đóng vai trò là client.
 
 ## Câu 19
 ### Question
-Nếu khai báo lệnh `nc -lvnp 4444`thì thật chất, port 4444 được mở ở máy nào? 
+Nếu khai báo lệnh `nc -lvnp 4444` thì thật chất, port 4444 được mở ở máy nào? 
 
+### Answer
 Nếu khai báo lệnh trên thì port 4444 được mở ở máy server (Kali) vì option `-l` là chỉ định netcat listening ở port 4444.
 
 ## Câu 20
-### Question 
-Thực hiện chuyển tập tin wget.exe trên máy Kali sang máy Windows 10
+### Question
+Thực hiện chuyển tập tin `wget.exe` trên máy Kali sang máy Windows 10.
 
+### Answer
 ![image](https://user-images.githubusercontent.com/31529599/135114439-9c1e726a-1052-4815-8a13-20d08f1ce54b.png)
 
-Ở máy Windows, tiến hành listening port 4444 và chuyển tiếp kết quả vào tập tin incomming.exe
-
-Ở máy Kali, sẽ gởi tập tin wget.exe tới máy windows thông qua port 4444.
-
+Ở máy Windows, tiến hành listening port 4444 và chuyển tiếp kết quả vào tập tin `incomming.exe`.  
+Ở máy Kali, sẽ gởi tập tin `wget.exe` tới máy windows thông qua port 4444.  
 Cuối cùng, test thử file đã nhận.
 
 ## Câu 21
 ### Question
 Thực hiện lại chi tiết kịch bản Reverse Shell và Bind Shell sử dụng netcat.
 
+### Answer
 #### Bind Shell
-
 ![image](https://user-images.githubusercontent.com/31529599/135115790-2bb8c7e0-5cc2-4bf9-be41-0c013eb905b2.png)
 
-Ở máy Windows thực hiện lắng nghe tại port 4444 và sử dụng option `-e` để chuyển hướng lệnh.
-
-Ở máy Kali, kết nối tới máy windows ở port 4444 để thực thi command `cmd`
+Ở máy Windows thực hiện lắng nghe tại port 4444 và sử dụng option `-e` để thực thi lệnh `cmd.exe` (mở command prompt) ngay khi có kết nối tới.  
+Ở máy Kali, kết nối tới máy windows ở port 4444 và có thể thực thi lệnh từ `cmd` của máy windows.
 
 #### Reverse Shell
-
 ![image](https://user-images.githubusercontent.com/31529599/135116634-cf0c7256-4988-4d76-baf6-0af0d303ea4b.png)
 
-Ở máy Kali thực hiện lắng nghe tại port 4444
-
-Ở máy Windows thực hiện kết nối tới máy Kali với option `-e` để cung cấp `cmd` cho server
+Ở máy Kali thực hiện lắng nghe tại port 4444.  
+Ở máy Windows thực hiện kết nối tới máy Kali với option `-e` để thực thi lệnh `cmd.exe` (mở command prompt) ngay khi kết nối thành công tới máy Kali.
 
 ## Câu 22
 ### Question
 So sánh ưu và nhược điểm khi sử dụng Reverse Shell và Bind Shell? Khi nào nên sử dụng Bind Shell? Khi nào nên sử dụng Reverse Shell?
 
+### Answer
+| Bind shell | Reverse shell |
+|---|---|
+| Victim lắng nghe và attacker sẽ kết nối tới. | Attacker sẽ lắng nghe và victim sẽ kết nối tới. |
+| Với cách thiết lập shell này, máy victim luôn up và listening nên ta có thể *ra vào* bất cứ lúc nào. | Ngay khi kết thúc kết nối, victim sẽ thoát khỏi netcat. Nếu ta muốn có lại kết nối, ta phải chạy lại lệnh netcat trên máy victim để kết nối tới máy attacker. |
+| Vì bind shell luôn up and listening nên có thể 1 attacker khác nhanh tay hơn và connect tới vicim trước. | Chúng ta sẽ không gặp trường hợp này với reverse shell. |
+| Trong 1 số môi trường, inbound traffic sẽ bị block bởi firewall nếu port đích *lạ*. | Vì victim chủ động initiate connection và kết nối ra ngoài nên ít có khả năng bị block bởi firewall hơn. |
+
+Vậy chúng ta nên sử dụng reverse shell trong hầu hết các trường hợp, trừ khi chúng ta có 1 mục đích gì đó cụ thể và cần bind shell thì ta sử dụng bind shell.
+
 ## Câu 23
 ### Question
 Thực hiện trao đổi tập tin, bind shell và reverse shell sử dụng PowerShell 
 
-### trao đổi tập tin
+### Answer
 
 ![image](https://user-images.githubusercontent.com/31529599/135124226-801918a0-f790-4c74-9650-4174b0011aa3.png)
 
-### Bind Shell
+#### Bind Shell
 
 ![image](https://user-images.githubusercontent.com/31529599/135124372-e4211462-9991-4f50-8bf0-795c46c9e8fc.png)
 
-### Reverse Shell
+#### Reverse Shell
 
 ![image](https://user-images.githubusercontent.com/31529599/135124650-10c5e588-f41a-4940-978d-0bee14a0dec0.png)
 
