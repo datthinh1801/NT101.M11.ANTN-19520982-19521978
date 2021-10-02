@@ -124,7 +124,7 @@ Có cách nào để ngăn chặn việc lưu trữ lịch sử lệnh hay khôn
 
 ### Answer
 Có 2 cách:
-- Vì lịch sử câu lệnh được lưu trên file, nên ta có thể xóa hoặc làm rỗng file này sau mỗi lần sử dụng. Một cách nhanh gọn là sử dụng option `-c` của chính câu lệnh `history`:` history -c`.
+- Vì lịch sử câu lệnh được lưu trên file, nên ta có thể xóa hoặc làm rỗng file này sau mỗi lần sử dụng. Một cách nhanh gọn là sử dụng option `-c` của chính câu lệnh `history`:` history -c`. Tuy nhiên có 1 số shell không hỗ trợ option này (ví dụ `zsh`).
 - Cấu hình shell. Để cấu hình shell, ta mở file cấu hình (file cấu hình thường có tên là `.<shell>rc` nằm tại thư mục  home của người dùng, ví dụ trên Kali sẽ là `/home/kali/.zshrc`) và set giá trị cho `HISTSIZE=n` với `n` là số câu lệnh ta muốn lưu. Để không lưu lịch sử thì ta set `HISTSIZE=0`.
 
 ## Câu 9
@@ -132,6 +132,7 @@ Có 2 cách:
 Ngoài cách sử dụng tiện ích history expansion, còn cách nào để thực hiện lại các lệnh đã nhập một cách nhanh chóng hay không? Nếu có, hãy mô tả cách làm.
 
 ### Answer
+Ngoài cách sử dụng tiện ích history expansion như lệnh `history`, mũi tên lên xuống để chọn nhanh câu lệnh trước đó, các shortcut như `!!`, `!n`, ta còn một cách khác để có thể thực hiện lại các lệnh đã nhập là ta đọc file `.<shell>_history`. Như đã đề cập ở câu 7, file này sẽ lưu lại lịch sử lệnh của shell tương ứng, kể cả khi ta thay đổi `HISTSIZE=0` thì file này vẫn không bị xóa.
 
 ## Câu 10
 ### Question
