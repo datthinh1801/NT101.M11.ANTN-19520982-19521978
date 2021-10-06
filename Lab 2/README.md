@@ -19,7 +19,35 @@ Hãy liệt kê những thành viên đang làm việc cho MegaCorp One và mộ
 Khi có được địa chỉ Email của các thành viên thuộc tổ chức, bạn có phát hiện ra được điều gì?
 
 ### Answer
-Từ các email trên ta thấy chúng đều có điểm chung là `<name>@<company-mail-domain>`. Vậy giả sử ta biết có 1 nhân viên của Megacorp One tên là Tim, ta có thể đoán được email của anh ấy là `tim@megacorpone.com`
+Từ các email trên ta thấy chúng đều có điểm chung là `<name>@<company-mail-domain>`. Vậy giả sử ta biết có 1 nhân viên của Megacorp One tên là Tim, ta có thể đoán được email của anh ấy là `tim@megacorpone.com`.
+
+## Câu 4
+### Question
+Sử dụng công cụ whois để xác định các name server của MegaCorp One.
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/136161707-19b4896d-3ecc-4064-8c6b-b6df21e16bf3.png)
+
+
+## Câu 5
+### Question
+Sử dụng công cụ whois để tìm kiếm các thông tin của trường Đại học Công nghệ Thông tin (`uit.edu.vn`) có được không? Giải thích?
+
+### Answer
+Khi chạy thử `whois` thì ta có kết quả sau:
+```
+┌──(kali㉿kali)-[~]
+└─$ whois uit.edu.vn     
+This TLD has no whois server, but you can access the whois database at
+http://www.vnnic.vn/en
+```
+
+Từ kết quả trên cũng như [issue](https://github.com/weppos/whois/issues/346) của tool `whois` trên github, ta biết được là VN TLD không có whois server. Do đó ta không thể trích xuất thông tin từ `whois` được.  
+
+Vậy để trích xuất được thông tin của `uit.edu.vn`, ta có thể vào trang web www.vnnic.vn để tra cứu.  
+![image](https://user-images.githubusercontent.com/44528004/136162610-82afa2c9-32cd-4548-a26b-45a68460d62b.png)
+
+
 
 ## Câu 7
 ### Question
