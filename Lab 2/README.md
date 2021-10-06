@@ -86,7 +86,7 @@ Bên cạnh đó, nếu 1 trang web nào đó có đăng hình nhân viên thì 
 ### Question
 Liệt kê một vài từ khóa thường gặp trên Google và cho ví dụ? (Yêu cầu: ít nhất 5 từ khóa)
 
-### Answre
+### Answer
 | Keyword | Example |
 |---|---|
 | `site` | `site:megacorpone.com` |
@@ -94,6 +94,13 @@ Liệt kê một vài từ khóa thường gặp trên Google và cho ví dụ? 
 | `intitle` | `intitle:contact` |
 | `filetype` | `filetype:pdf` |
 | `intext` | `intext:passwd` |
+
+## Câu 10
+### Question
+Thực hiện tìm kiếm các tài liệu thú vị của Trường Đại học Công nghệ Thông tin mà được công bố trên Internet mà theo bạn là không nên được công bố?
+
+### Answer
+
 
 ## Câu 11
 ### Question
