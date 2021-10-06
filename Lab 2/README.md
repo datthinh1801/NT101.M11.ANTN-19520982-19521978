@@ -139,7 +139,7 @@ câu a: Các bản ghi dns (ns,nx,soa,spf...):
 
 câu b: Các website và địa chỉ IP tương ứng: 
 
-![image](https://user-images.githubusercontent.com/31529599/136163234-20cd4839-8fdc-40bf-a677-a19096b1f030.png)
+![image](https://user-images.githubusercontent.com/31529599/136167270-fa4fcfd0-6643-42b7-b43e-adb1764ac1cc.png)
 
 
 
