@@ -29,6 +29,8 @@ Sử dụng Netcraft để xác định máy chủ ứng dụng (applicatio
 Sử dụng công cụ theHarvester để lấy tìm kiếm các địa chỉ email của UIT.
 
 ### Answer
+![image](https://user-images.githubusercontent.com/44528004/136160112-8cc3f728-b626-4582-83d3-303b85fd6666.png)  
+
 
 ## Câu 19
 ### Question
