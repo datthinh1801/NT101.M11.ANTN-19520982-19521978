@@ -16,3 +16,28 @@ Ai là Phó chủ tịch Pháp lý (Vice President of Legal) của MegaCorp 
 
 ![image](https://user-images.githubusercontent.com/44528004/136157219-cf7f4205-b9ee-4e0c-b20c-41fabe5d7ffd.png)
 
+## Câu 11
+### Question
+Sử dụng Netcraft để xác định máy chủ ứng dụng (application server) đang chạy trên www.megacorpone.com.
+
+### Answer
+
+## Câu 17
+### Question
+Sử dụng công cụ theHarvester để lấy tìm kiếm các địa chỉ email của UIT.
+
+### Answer
+
+## Câu 19
+### Question
+Thực hiện tìm kiếm các địa chỉ Email của MegaCorp One sử dụng Maltego.
+
+### Answer
+
+## Câu 20
+### Question
+Sử dụng công cụ Maltego cho UIT (tên miền: `uit.edu.vn`) và trả lời các câu hỏi sau:
+a. Các bản ghi DNS.
+b. Các website và địa chỉ IP tương ứng.
+
+### Answer
