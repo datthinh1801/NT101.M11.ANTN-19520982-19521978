@@ -47,7 +47,20 @@ Từ kết quả trên cũng như [issue](https://github.com/weppos/whois/issues
 Vậy để trích xuất được thông tin của `uit.edu.vn`, ta có thể vào trang web www.vnnic.vn để tra cứu.  
 ![image](https://user-images.githubusercontent.com/44528004/136162610-82afa2c9-32cd-4548-a26b-45a68460d62b.png)
 
-
+## Câu 6
+### Question
+Thu thập thông tin về tên miền uit.edu.vn và hãy cho biết các thông tin như:  
+ a. Ngày đăng ký tên miền  
+ b. Ngày hết hạn tên miền  
+ c. Chủ sở hữu tên miền  
+ d. Các name server của tên miền
+ 
+### Answer
+Từ kết quả tra cứu ở câu trên:  
+a. Ngày đăng ký tên miền (Creation date): 02/10/2006  
+b. Ngày hết hạn tên miền (Expiration date): 02/10/2022  
+c. Chủ sở hữu tên miền: Công ty TNHH PA Việt Nam  
+d. Các name server: `ns1.pavietnam.vn`, `ns2.pavietnam.vn`, `nsbak.pavietnam.net`.
 
 ## Câu 7
 ### Question
