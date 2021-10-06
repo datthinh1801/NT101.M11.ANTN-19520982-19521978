@@ -21,6 +21,8 @@ Ai là Phó chủ tịch Pháp lý (Vice President of Legal) của MegaCorp 
 Sử dụng Netcraft để xác định máy chủ ứng dụng (application server) đang chạy trên www.megacorpone.com.
 
 ### Answer
+![image](https://user-images.githubusercontent.com/44528004/136158113-227712a9-61a0-4af3-b016-bb615ba9a1ed.png)
+
 
 ## Câu 17
 ### Question
