@@ -82,7 +82,18 @@ Khi ta sử dụng dork `intext:name`, ta sẽ search các trang của `www.mega
 Bên cạnh đó, nếu 1 trang web nào đó có đăng hình nhân viên thì ta cũng có thể thấy được mặt của họ.  
 ![image](https://user-images.githubusercontent.com/44528004/136164765-bceae327-2362-40f3-a6cd-5faccd9aba01.png)
 
+## Câu 9
+### Question
+Liệt kê một vài từ khóa thường gặp trên Google và cho ví dụ? (Yêu cầu: ít nhất 5 từ khóa)
 
+### Answre
+| Keyword | Example |
+|---|---|
+| `site` | `site:megacorpone.com` |
+| `inurl` | `inurl:uit` |
+| `intitle` | `intitle:contact` |
+| `filetype` | `filetype:pdf` |
+| `intext` | `intext:passwd` |
 
 ## Câu 11
 ### Question
