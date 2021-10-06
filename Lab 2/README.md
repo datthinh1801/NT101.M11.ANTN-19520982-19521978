@@ -37,6 +37,8 @@ Sử dụng công cụ theHarvester để lấy tìm kiếm các địa c
 Thực hiện tìm kiếm các địa chỉ Email của MegaCorp One sử dụng Maltego.
 
 ### Answer
+![image](https://user-images.githubusercontent.com/31529599/136160368-18de1590-5c4c-4d27-af30-9b07c5821253.png)
+
 
 ## Câu 20
 ### Question
