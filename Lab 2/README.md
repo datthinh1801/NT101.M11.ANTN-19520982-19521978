@@ -142,4 +142,60 @@ câu b: Các website và địa chỉ IP tương ứng:
 ![image](https://user-images.githubusercontent.com/31529599/136167270-fa4fcfd0-6643-42b7-b43e-adb1764ac1cc.png)
 
 
+## Câu 35:
 
+### Anwser
+
+Script: `qscan`
+
+```bash
+└─$ sudo nmap 192.168.21.137 --script=qscan
+[sudo] password for kali: 
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-10-06 04:35 EDT
+Nmap scan report for 192.168.21.137
+Host is up (0.0018s latency).
+Not shown: 977 closed ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+23/tcp   open  telnet
+25/tcp   open  smtp
+53/tcp   open  domain
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+512/tcp  open  exec
+513/tcp  open  login
+514/tcp  open  shell
+1099/tcp open  rmiregistry
+1524/tcp open  ingreslock
+2049/tcp open  nfs
+2121/tcp open  ccproxy-ftp
+3306/tcp open  mysql
+5432/tcp open  postgresql
+5900/tcp open  vnc
+6000/tcp open  X11
+6667/tcp open  irc
+8009/tcp open  ajp13
+8180/tcp open  unknown
+MAC Address: 00:0C:29:FA:DD:2A (VMware)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV  LOSS (%)
+| 1     0       748.70     303.84  0.0%
+| 21    1       528.10     67.39   0.0%
+| 22    0       723.30     476.66  0.0%
+| 23    0       775.50     408.16  0.0%
+| 25    0       794.50     538.23  0.0%
+| 53    0       586.90     146.47  0.0%
+| 80    0       758.70     244.58  0.0%
+| 111   0       665.90     404.18  0.0%
+|_139   0       711.70     199.32  0.0%
+
+Nmap done: 1 IP address (1 host up) scanned in 33.75 seconds
+
+```
+
+Script: 
