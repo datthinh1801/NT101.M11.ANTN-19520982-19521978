@@ -71,6 +71,19 @@ Ai là Phó chủ tịch Pháp lý (Vice President of Legal) của MegaCorp 
 
 ![image](https://user-images.githubusercontent.com/44528004/136157219-cf7f4205-b9ee-4e0c-b20c-41fabe5d7ffd.png)
 
+## Câu 8
+### Question
+Bạn có thể tìm kiếm thêm các nhân viên khác của MegaCorp One mà không được liệt kê trên trang web www.megacorpone.com?
+
+### Answer
+Khi ta sử dụng dork `intext:name`, ta sẽ search các trang của `www.megacorpone.com` có name, bao gồm cả trang contact.  
+![image](https://user-images.githubusercontent.com/44528004/136164482-e9292dea-4233-47ed-bb7f-63b3183176c2.png)  
+
+Bên cạnh đó, nếu 1 trang web nào đó có đăng hình nhân viên thì ta cũng có thể thấy được mặt của họ.  
+![image](https://user-images.githubusercontent.com/44528004/136164765-bceae327-2362-40f3-a6cd-5faccd9aba01.png)
+
+
+
 ## Câu 11
 ### Question
 Sử dụng Netcraft để xác định máy chủ ứng dụng (application server) đang chạy trên www.megacorpone.com.
