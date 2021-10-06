@@ -142,7 +142,7 @@ câu b: Các website và địa chỉ IP tương ứng:
 ![image](https://user-images.githubusercontent.com/31529599/136167270-fa4fcfd0-6643-42b7-b43e-adb1764ac1cc.png)
 
 
-## Câu 35:
+## Câu 35: Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2)
 
 ### Anwser
 
