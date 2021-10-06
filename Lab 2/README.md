@@ -7,6 +7,14 @@ Từ trang web của MegaCorp One, hãy mô tả một chút về lĩnh vực ho
 Nanotechnology và các tiêu chuẩn trong các lĩnh vực dược học, điện tử, thương mại.  
 ![image](https://user-images.githubusercontent.com/44528004/136151242-da157a61-b180-499c-b85e-30e03008fd03.png)
 
+## Câu 2
+### Question
+Hãy liệt kê những thành viên đang làm việc cho MegaCorp One và một vài thông tin về những thành viên đó (địa chỉ email, chức vụ, tài khoản mạng xã hội)?
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/136160316-3a552c62-31c4-45ee-ad74-210976bba7cf.png)
+
+
 ## Câu 7
 ### Question
 Ai là Phó chủ tịch Pháp lý (Vice President of Legal) của MegaCorp One và địa chỉ email của họ là gì?
@@ -37,8 +45,6 @@ Sử dụng công cụ theHarvester để lấy tìm kiếm các địa c
 Thực hiện tìm kiếm các địa chỉ Email của MegaCorp One sử dụng Maltego.
 
 ### Answer
-![image](https://user-images.githubusercontent.com/31529599/136160368-18de1590-5c4c-4d27-af30-9b07c5821253.png)
-
 
 ## Câu 20
 ### Question
