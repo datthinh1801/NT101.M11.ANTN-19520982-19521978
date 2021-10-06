@@ -109,6 +109,12 @@ Sử dụng Netcraft để xác định máy chủ ứng dụng (applicatio
 ### Answer
 ![image](https://user-images.githubusercontent.com/44528004/136158113-227712a9-61a0-4af3-b016-bb615ba9a1ed.png)
 
+## Câu 12
+### Question
+Thực hiện sử dụng module có thể giúp phân giải tên miền ở Hình 20 thành địa chỉ IP tương ứng.
+
+### Answer
+
 
 ## Câu 17
 ### Question
