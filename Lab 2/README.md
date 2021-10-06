@@ -48,12 +48,12 @@ b. Các website và địa chỉ IP tương ứng.
 
 ### Answer
 
-câu a:
+câu a: Các bản ghi dns (ns,nx,soa,spf...):
 
 ![image](https://user-images.githubusercontent.com/31529599/136162461-af90926d-2b9e-4f6c-b76b-d423079fef00.png)
 
 
-câu b:
+câu b: Các website và địa chỉ IP tương ứng: 
 
 ![image](https://user-images.githubusercontent.com/31529599/136163234-20cd4839-8fdc-40bf-a677-a19096b1f030.png)
 
