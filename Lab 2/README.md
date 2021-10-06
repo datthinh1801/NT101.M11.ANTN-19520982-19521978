@@ -14,6 +14,12 @@ Hãy liệt kê những thành viên đang làm việc cho MegaCorp One và mộ
 ### Answer
 ![image](https://user-images.githubusercontent.com/44528004/136160316-3a552c62-31c4-45ee-ad74-210976bba7cf.png)
 
+## Câu 3
+### Question
+Khi có được địa chỉ Email của các thành viên thuộc tổ chức, bạn có phát hiện ra được điều gì?
+
+### Answer
+Từ các email trên ta thấy chúng đều có điểm chung là `<name>@<company-mail-domain>`. Vậy giả sử ta biết có 1 nhân viên của Megacorp One tên là Tim, ta có thể đoán được email của anh ấy là `tim@megacorpone.com`
 
 ## Câu 7
 ### Question
