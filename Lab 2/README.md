@@ -212,7 +212,30 @@ Ngoài các bản ghi kể trên, hãy liệt kê các bản ghi khác của DNS
 
 ### Answer
 Ngoài NS, A, MX, PTR, CNAME, TXT, còn có các bản ghi khác như AAAA, SOA, SRV, AFSDB, APL, CAA, DNSKEY, CDNSKEY, CERT, DCHID, DNAME, HIP, IPSECKEY, LOC, NAPTR, NSEC, RRSIG, RP, và SSHFP.
-> https://www.cloudflare.com/learning/dns/dns-records/
+> https://www.cloudflare.com/learning/dns/dns-records/  
+
+
+## Câu 22
+### Question
+Sử dụng lệnh `host` để tìm kiếm các bản ghi TXT, MX cho tên miền `uit.edu.vn`.
+
+### Answer
+```
+└─$ host -t txt uit.edu.vn     
+uit.edu.vn descriptive text "v=spf1 include:_spf.google.com ~all"
+uit.edu.vn descriptive text "google-site-verification=wjArKGa37oHK083XqT2C91tPny8NLttGS0aU5pJjKiY"
+uit.edu.vn descriptive text "MS=E431E3CA3EFF5A6431E2378C924984A8A0334ABC"
+```
+
+```
+└─$ host -t mx uit.edu.vn
+uit.edu.vn mail is handled by 20 alt2.aspmx.l.google.com.
+uit.edu.vn mail is handled by 40 aspmx3.googlemail.com.
+uit.edu.vn mail is handled by 20 alt1.aspmx.l.google.com.
+uit.edu.vn mail is handled by 40 aspmx2.googlemail.com.
+uit.edu.vn mail is handled by 10 aspmx.l.google.com.
+```                                                        
+
 
 ## Câu 35: Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2)
 
