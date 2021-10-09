@@ -144,6 +144,18 @@ Sử dụng filters:
 | port | Tìm theo port được mở |
 | before/after | Tìm theo thời gian |
 
+## Câu 16
+### Question
+So sánh kết quả tìm kiếm trên Shodan so với các search engine khác như Google, Bing, ...
+
+### Answer
+| | Shodan | Các search engine khác |
+|---|---|---|
+| Kết quả tìm kiếm thông thường | Thiết bị (camera, router, webcames, servers, printers ...) | Nội dung (file, đoạn text, url, ...) |
+| Về tìm kiếm dịch vụ | Kết quả là các dịch vụ (như VPN, VNC, ...) bị rò rỉ kèm theo các thông tin có liên quan đế dịch vụ mà ta có thể truy cập được. | Kết quả là các sản phẩm liên quan đên dịch vụ (ứng dụng để chạy dịch vụ, document, ...). |
+| So sánh với Google Dorks | Mặc định là tìm kiếm thiết bị và dịch vụ bị rò rỉ. | Ta có thể tận dụng google dork để đạt được kết quả tương tự nhưng đòi hỏi sử dụng các keywords như `intitle`, `allintext`, ... .|
+
+
 ## Câu 17
 ### Question
 Sử dụng công cụ theHarvester để lấy tìm kiếm các địa chỉ email của UIT.
