@@ -111,9 +111,20 @@ Sử dụng Netcraft để xác định máy chủ ứng dụng (applicatio
 
 ## Câu 12
 ### Question
-Thực hiện sử dụng module có thể giúp phân giải tên miền ở Hình 20 thành địa chỉ IP tương ứng.
+Thực hiện sử dụng module có thể giúp phân giải tên miền từ `show hosts` thành địa chỉ IP tương ứng.
 
 ### Answer
+Từ các `hosts` sau khi chạy `netcraft` module sau:  
+
+![image](https://user-images.githubusercontent.com/44528004/136660937-fbfce59f-3510-4880-b73c-1f9378bd94f8.png)
+
+
+![image](https://user-images.githubusercontent.com/44528004/136660873-dbe741c4-e13b-4f20-99de-006a79b3bceb.png)
+
+Ta có thể phân giải tên miền bằng cách sử dụng module `recon/hosts-hosts/resolve`.  
+
+![image](https://user-images.githubusercontent.com/44528004/136660945-4d26d4da-91e1-4818-bf4c-34a81633764c.png)
+> Để có thể sử dụng module này, từ module `netcraft`, ta dùng lệnh `back` và sau đó load module `resolve` và `run` như thông thường.
 
 
 ## Câu 17
