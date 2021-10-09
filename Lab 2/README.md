@@ -245,7 +245,37 @@ Sử dụng lệnh `host` cho các hostname không tồn tại trong tên miền
 
 Từ kết quả trên, ta thấy răng các địa chỉ IP trả về đều giống nhau. Lí dó là vì cấu hình DNS của `uit.edu.vn` có sử dụng wildcard `*` nên nếu 1 DNS query nào đó không có hostname tương ứng thì sẽ được match với wildcard `*` và trả về cùng 1 địa chỉ IP.
 
-## Câu 35: Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2)
+## Câu 24
+### Question
+Sử dụng wordlist thông dụng khác (rockyou, seclists) để tìm kiếm các hostname hợp lệ khác của megacorpone.com.
+
+### Answer
+```
+└─$ for name in $(cat /usr/share/seclists/Discovery/DNS/namelist.txt ); do host $name.megacorpone.com;done | grep -v "not found"
+admin.megacorpone.com has address 51.222.169.208
+beta.megacorpone.com has address 51.222.169.209
+intranet.megacorpone.com has address 51.222.169.211
+mail.megacorpone.com has address 51.222.169.212
+mail2.megacorpone.com has address 51.222.169.213
+ns1.megacorpone.com has address 51.79.37.18
+ns2.megacorpone.com has address 51.222.39.63
+ns3.megacorpone.com has address 66.70.207.180
+router.megacorpone.com has address 51.222.169.214
+snmp.megacorpone.com has address 51.222.169.216
+support.megacorpone.com has address 51.222.169.218
+syslog.megacorpone.com has address 51.222.169.217
+test.megacorpone.com has address 51.222.169.219
+vpn.megacorpone.com has address 51.222.169.220
+www.megacorpone.com has address 149.56.244.87
+www2.megacorpone.com has address 149.56.244.87
+```
+
+## Câu 25
+
+
+## Câu 35
+### Question
+Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2).
 
 ### Anwser
 
