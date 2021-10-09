@@ -236,6 +236,14 @@ uit.edu.vn mail is handled by 40 aspmx2.googlemail.com.
 uit.edu.vn mail is handled by 10 aspmx.l.google.com.
 ```                                                        
 
+## Câu 23
+### Question
+Sử dụng lệnh `host` cho các hostname không tồn tại trong tên miền `uit.edu.vn` (idontexist, noexist, baithuchanhso2). Có nhận xét gì về kết quả trả về hay không? Giải thích?
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/136663473-ab44524e-0cfa-4a6b-9d77-ad408ad8ba88.png)
+
+Từ kết quả trên, ta thấy răng các địa chỉ IP trả về đều giống nhau. Lí dó là vì cấu hình DNS của `uit.edu.vn` có sử dụng wildcard `*` nên nếu 1 DNS query nào đó không có hostname tương ứng thì sẽ được match với wildcard `*` và trả về cùng 1 địa chỉ IP.
 
 ## Câu 35: Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2)
 
