@@ -271,7 +271,841 @@ www2.megacorpone.com has address 149.56.244.87
 ```
 
 ## Câu 25
+### Question
+Viết một chương trình Bash script để liệt kê danh sách các nameserver của các đơn vị thành viên thuộc Đại học Quốc Gia TP.HCM (hcmus.edu.vn, hcmussh.edu.vn, uit.edu.vn, hcmut.edu.vn, hcmiu.edu.vn, uel.edu.vn, hcmier.edu.vn, vnuhcm.edu.vn) và thực hiện zone transfer ứng với các nameserver đã tìm được.
 
+### Answer
+Script:
+```bash
+#! /bin/bash
+domains=("hcmus.edu.vn" "hcmussh.edu.vn" "uit.edu.vn" "hcmut.edu.vn" "uel.edu.vn" "hcmier.edu.vn" "vnuhcm.edu.vn" "agu.edu.vn")
+
+for domain in ${domains[@]}; do
+        echo "# Domain: $domain"
+        for nameServer in `host -t ns $domain 2> /dev/null | cut -d " " -f 4`; do
+                echo "## Nameserver: $nameServer"
+                echo "### Transferring zone..."
+                host -l $domain $nameServer 2> /dev/null
+                echo
+                echo "---------------------------------------------------------"
+        done
+        echo
+        echo "################################################################"
+        echo
+done
+```
+
+Kết quả chạy:
+```
+└─$ ./dns_digger.sh  
+# Domain: hcmus.edu.vn
+## Nameserver: server.hcmus.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: server.hcmus.edu.vn.
+Address: 171.244.202.180#53
+Aliases: 
+
+Host hcmus.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: dns2.hcmus.edu.vn.
+### Transferring zone...
+;; Connection to 115.73.217.121#53(115.73.217.121) for hcmus.edu.vn failed: timed out.
+;; connection timed out; no servers could be reached
+
+;; Connection to 115.73.217.121#53(115.73.217.121) for hcmus.edu.vn failed: timed out.
+
+---------------------------------------------------------
+## Nameserver: dns1.hcmus.edu.vn.
+### Transferring zone...
+;; Connection to 14.241.254.131#53(14.241.254.131) for hcmus.edu.vn failed: timed out.
+;; connection timed out; no servers could be reached
+
+;; Connection to 14.241.254.131#53(14.241.254.131) for hcmus.edu.vn failed: timed out.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: hcmussh.edu.vn
+## Nameserver: server.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: server.vnuhcm.edu.vn.
+Address: 103.88.121.201#53
+Aliases: 
+
+Host hcmussh.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: vnuserv.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: vnuserv.vnuhcm.edu.vn.
+Address: 103.88.121.200#53
+Aliases: 
+
+Host hcmussh.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: uit.edu.vn
+## Nameserver: nsbak.pavietnam.net.
+### Transferring zone...
+Using domain server:
+Name: nsbak.pavietnam.net.
+Address: 112.213.89.22#53
+Aliases: 
+
+Host uit.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: ns1.pavietnam.vn.
+### Transferring zone...
+Using domain server:
+Name: ns1.pavietnam.vn.
+Address: 112.213.89.3#53
+Aliases: 
+
+Host uit.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: ns2.pavietnam.vn.
+### Transferring zone...
+Using domain server:
+Name: ns2.pavietnam.vn.
+Address: 222.255.121.247#53
+Aliases: 
+
+Host uit.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: hcmut.edu.vn
+## Nameserver: dns4.hcmut.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: dns4.hcmut.edu.vn.
+Address: 203.205.32.236#53
+Aliases: 
+
+hcmut.edu.vn name server dns1.hcmut.edu.vn.
+hcmut.edu.vn name server dns2.hcmut.edu.vn.
+hcmut.edu.vn name server dns3.hcmut.edu.vn.
+hcmut.edu.vn name server dns4.hcmut.edu.vn.
+hcmut.edu.vn has address 221.133.13.114
+60.hcmut.edu.vn has address 112.213.89.2
+aao.hcmut.edu.vn has address 221.133.13.122
+apps.aao.hcmut.edu.vn has address 221.133.13.124
+server.aao.hcmut.edu.vn has address 221.133.13.122
+actbk.hcmut.edu.vn has address 221.133.13.127
+alumni.hcmut.edu.vn has address 221.133.13.109
+amis.hcmut.edu.vn has address 221.133.13.106
+bkiot.hcmut.edu.vn has address 210.211.113.130
+bkpay.hcmut.edu.vn has address 221.133.13.124
+bksi.hcmut.edu.vn has address 221.133.13.118
+bkyst.hcmut.edu.vn has address 45.119.83.20
+bridge.hcmut.edu.vn has address 113.176.61.107
+bridge2.hcmut.edu.vn has address 123.30.157.251
+carerescif.hcmut.edu.vn has address 112.213.89.145
+www.carerescif.hcmut.edu.vn has address 112.213.89.145
+casdev-master.hcmut.edu.vn has address 221.133.13.105
+cc.hcmut.edu.vn has address 112.78.1.105
+cce.hcmut.edu.vn has address 112.78.1.105
+conferences.hcmut.edu.vn has address 221.133.13.111
+www.conferences.hcmut.edu.vn has address 221.133.13.111
+cse.hcmut.edu.vn has address 221.133.13.113
+60.cse.hcmut.edu.vn has address 61.28.227.157
+doanhoi.cse.hcmut.edu.vn has address 45.119.83.33
+elearning.cse.hcmut.edu.vn has address 221.133.13.110
+internship.cse.hcmut.edu.vn has address 221.133.13.108
+server.cse.hcmut.edu.vn has address 221.133.13.113
+vre.cse.hcmut.edu.vn has address 103.88.121.151
+ctct.hcmut.edu.vn has address 125.212.245.195
+dcselab.hcmut.edu.vn has address 221.132.37.37
+demo.hcmut.edu.vn has address 221.133.13.105
+diemthi.hcmut.edu.vn has address 221.133.13.122
+diemthi.hcmut.edu.vn has address 103.88.121.145
+diemthi.hcmut.edu.vn has address 115.78.0.48
+dkmh.hcmut.edu.vn has address 221.133.13.124
+dls.hcmut.edu.vn has address 103.88.121.156
+dns1.hcmut.edu.vn has address 221.133.13.114
+dns2.hcmut.edu.vn has address 221.133.13.115
+dns3.hcmut.edu.vn has address 203.205.32.235
+dns4.hcmut.edu.vn has address 203.205.32.236
+dae.dte.hcmut.edu.vn has address 171.244.43.27
+www.dae.dte.hcmut.edu.vn has address 171.244.43.27
+e-learning.hcmut.edu.vn has address 221.133.13.123
+elearning-cse.hcmut.edu.vn has address 221.133.13.107
+fdse2017.hcmut.edu.vn has address 61.28.227.157
+fe.hcmut.edu.vn has address 52.74.151.191
+fenr.hcmut.edu.vn has address 112.213.89.145
+www.fenr.hcmut.edu.vn has address 112.213.89.145
+hre.fme.hcmut.edu.vn has address 125.212.209.56
+ise.fme.hcmut.edu.vn has address 103.48.81.8
+gateway01.hcmut.edu.vn has address 14.241.245.110
+gateway02.hcmut.edu.vn has address 221.133.12.6
+gateway2.hcmut.edu.vn has address 113.161.83.117
+gpu02.hcmut.edu.vn has address 103.88.121.152
+gpu11.hcmut.edu.vn has address 103.88.121.150
+grad.hcmut.edu.vn has address 221.133.13.127
+graylog.hcmut.edu.vn has address 221.133.13.115
+gtsw2019.hcmut.edu.vn has address 166.62.28.82
+www.gtsw2019.hcmut.edu.vn has address 166.62.28.82
+hnkhcn2013.hcmut.edu.vn has address 112.213.89.149
+hpcc.hcmut.edu.vn has address 203.205.33.134
+hpccbk.hcmut.edu.vn has address 116.118.106.108
+hpccportal.hcmut.edu.vn has address 203.205.33.134
+hpclab.hcmut.edu.vn has address 103.88.121.154
+icse.hcmut.edu.vn has address 103.18.6.44
+www.icse.hcmut.edu.vn has address 103.18.6.44
+imp.hcmut.edu.vn has address 103.221.220.25
+www.imp.hcmut.edu.vn has address 103.221.220.25
+impactmap.hcmut.edu.vn has address 61.28.227.157
+iot.hcmut.edu.vn has address 61.28.227.157
+iotlab.hcmut.edu.vn has address 210.211.113.130
+iro.hcmut.edu.vn has address 112.213.89.46
+www.iro.hcmut.edu.vn has address 112.213.89.46
+it.hcmut.edu.vn has address 103.88.121.162
+tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+www.tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+ktx.hcmut.edu.vn has address 203.205.32.235
+opac.lib.hcmut.edu.vn has address 103.88.121.159
+portal.lib.hcmut.edu.vn has address 221.133.13.104
+server.lib.hcmut.edu.vn has address 112.213.85.46
+lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+www.lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+log.hcmut.edu.vn has address 221.133.13.108
+logserver.hcmut.edu.vn has address 221.133.13.108
+meet.hcmut.edu.vn has address 14.241.245.187
+meganet.hcmut.edu.vn has address 10.128.0.1
+meganet-gateway.hcmut.edu.vn has address 14.169.141.126
+meganet-gateway2.hcmut.edu.vn has address 14.169.17.32
+meganet02.hcmut.edu.vn has address 10.130.0.1
+meganet2.hcmut.edu.vn has address 10.228.0.1
+membrane2014.hcmut.edu.vn has address 112.213.89.144
+mining.hcmut.edu.vn has address 103.88.121.145
+mybk.hcmut.edu.vn has address 221.133.13.124
+netdata.hcmut.edu.vn has address 221.133.13.116
+ntop.hcmut.edu.vn has address 221.133.13.115
+oisp.hcmut.edu.vn has address 103.90.220.204
+sinhvien.oisp.hcmut.edu.vn has address 221.132.17.180
+personel.hcmut.edu.vn has address 221.133.13.127
+pgs.hcmut.edu.vn has address 221.133.13.112
+portal.hcmut.edu.vn has address 221.133.13.108
+private01.hcmut.edu.vn has address 10.130.0.1
+private6.hcmut.edu.vn has address 10.228.0.1
+pssp.hcmut.edu.vn has address 221.133.13.105
+public.hcmut.edu.vn has address 172.28.232.1
+public2.hcmut.edu.vn has address 10.28.232.1
+qlns.hcmut.edu.vn has address 221.133.13.108
+radius01.hcmut.edu.vn has address 221.133.12.6
+radius1.hcmut.edu.vn has address 221.133.12.6
+recsys.hcmut.edu.vn has address 221.133.13.106
+rsce2016.hcmut.edu.vn has address 103.227.177.226
+sc.hcmut.edu.vn has address 221.133.13.121
+scc.hcmut.edu.vn has address 61.28.227.157
+server02.hcmut.edu.vn has address 221.133.13.115
+server03.hcmut.edu.vn has address 203.205.32.236
+server04.hcmut.edu.vn has address 221.133.13.114
+server05.hcmut.edu.vn has address 221.133.13.116
+server06.hcmut.edu.vn has address 203.205.32.235
+server07.hcmut.edu.vn has address 221.133.13.117
+server09.hcmut.edu.vn has address 203.205.32.235
+server11.hcmut.edu.vn has address 221.133.13.117
+server12.hcmut.edu.vn has address 221.133.13.118
+server14.hcmut.edu.vn has address 221.133.13.108
+server15.hcmut.edu.vn has address 221.133.13.115
+server236.hcmut.edu.vn has address 221.133.13.110
+server30.hcmut.edu.vn has address 221.133.13.121
+server80.hcmut.edu.vn has address 221.133.13.119
+server89.hcmut.edu.vn has address 221.133.13.120
+shms.hcmut.edu.vn has address 221.133.13.111
+sso.hcmut.edu.vn has address 221.133.13.120
+sso-net.hcmut.edu.vn has address 221.133.13.111
+sso-net2.hcmut.edu.vn has address 221.133.13.111
+test.hcmut.edu.vn has address 221.133.13.108
+traffic.hcmut.edu.vn has address 103.88.121.161
+tris.hcmut.edu.vn has address 14.161.5.98
+tuyensinh.hcmut.edu.vn has address 221.133.13.124
+tv-cam01.hcmut.edu.vn has address 221.133.13.114
+tv-cam02.hcmut.edu.vn has address 221.133.13.115
+tv-cam03.hcmut.edu.vn has address 113.161.83.117
+uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+www.uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+vre.hcmut.edu.vn has address 103.88.121.151
+wifi-controller.hcmut.edu.vn has address 221.133.13.110
+wifi-cse.hcmut.edu.vn has address 172.28.211.1
+wiki.hcmut.edu.vn has address 221.133.13.124
+
+---------------------------------------------------------
+## Nameserver: dns2.hcmut.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: dns2.hcmut.edu.vn.
+Address: 221.133.13.115#53
+Aliases: 
+
+hcmut.edu.vn name server dns1.hcmut.edu.vn.
+hcmut.edu.vn name server dns2.hcmut.edu.vn.
+hcmut.edu.vn name server dns3.hcmut.edu.vn.
+hcmut.edu.vn name server dns4.hcmut.edu.vn.
+hcmut.edu.vn has address 221.133.13.114
+60.hcmut.edu.vn has address 112.213.89.2
+aao.hcmut.edu.vn has address 221.133.13.122
+apps.aao.hcmut.edu.vn has address 221.133.13.124
+server.aao.hcmut.edu.vn has address 221.133.13.122
+actbk.hcmut.edu.vn has address 221.133.13.127
+alumni.hcmut.edu.vn has address 221.133.13.109
+amis.hcmut.edu.vn has address 221.133.13.106
+bkiot.hcmut.edu.vn has address 210.211.113.130
+bkpay.hcmut.edu.vn has address 221.133.13.124
+bksi.hcmut.edu.vn has address 221.133.13.118
+bkyst.hcmut.edu.vn has address 45.119.83.20
+bridge.hcmut.edu.vn has address 113.176.61.107
+bridge2.hcmut.edu.vn has address 123.30.157.251
+carerescif.hcmut.edu.vn has address 112.213.89.145
+www.carerescif.hcmut.edu.vn has address 112.213.89.145
+casdev-master.hcmut.edu.vn has address 221.133.13.105
+cc.hcmut.edu.vn has address 112.78.1.105
+cce.hcmut.edu.vn has address 112.78.1.105
+conferences.hcmut.edu.vn has address 221.133.13.111
+www.conferences.hcmut.edu.vn has address 221.133.13.111
+cse.hcmut.edu.vn has address 221.133.13.113
+60.cse.hcmut.edu.vn has address 61.28.227.157
+doanhoi.cse.hcmut.edu.vn has address 45.119.83.33
+elearning.cse.hcmut.edu.vn has address 221.133.13.110
+internship.cse.hcmut.edu.vn has address 221.133.13.108
+server.cse.hcmut.edu.vn has address 221.133.13.113
+vre.cse.hcmut.edu.vn has address 103.88.121.151
+ctct.hcmut.edu.vn has address 125.212.245.195
+dcselab.hcmut.edu.vn has address 221.132.37.37
+demo.hcmut.edu.vn has address 221.133.13.105
+diemthi.hcmut.edu.vn has address 221.133.13.122
+diemthi.hcmut.edu.vn has address 103.88.121.145
+diemthi.hcmut.edu.vn has address 115.78.0.48
+dkmh.hcmut.edu.vn has address 221.133.13.124
+dls.hcmut.edu.vn has address 103.88.121.156
+dns1.hcmut.edu.vn has address 221.133.13.114
+dns2.hcmut.edu.vn has address 221.133.13.115
+dns3.hcmut.edu.vn has address 203.205.32.235
+dns4.hcmut.edu.vn has address 203.205.32.236
+dae.dte.hcmut.edu.vn has address 171.244.43.27
+www.dae.dte.hcmut.edu.vn has address 171.244.43.27
+e-learning.hcmut.edu.vn has address 221.133.13.123
+elearning-cse.hcmut.edu.vn has address 221.133.13.107
+fdse2017.hcmut.edu.vn has address 61.28.227.157
+fe.hcmut.edu.vn has address 52.74.151.191
+fenr.hcmut.edu.vn has address 112.213.89.145
+www.fenr.hcmut.edu.vn has address 112.213.89.145
+hre.fme.hcmut.edu.vn has address 125.212.209.56
+ise.fme.hcmut.edu.vn has address 103.48.81.8
+gateway01.hcmut.edu.vn has address 14.241.245.110
+gateway02.hcmut.edu.vn has address 221.133.12.6
+gateway2.hcmut.edu.vn has address 113.161.83.117
+gpu02.hcmut.edu.vn has address 103.88.121.152
+gpu11.hcmut.edu.vn has address 103.88.121.150
+grad.hcmut.edu.vn has address 221.133.13.127
+graylog.hcmut.edu.vn has address 221.133.13.115
+gtsw2019.hcmut.edu.vn has address 166.62.28.82
+www.gtsw2019.hcmut.edu.vn has address 166.62.28.82
+hnkhcn2013.hcmut.edu.vn has address 112.213.89.149
+hpcc.hcmut.edu.vn has address 203.205.33.134
+hpccbk.hcmut.edu.vn has address 116.118.106.108
+hpccportal.hcmut.edu.vn has address 203.205.33.134
+hpclab.hcmut.edu.vn has address 103.88.121.154
+icse.hcmut.edu.vn has address 103.18.6.44
+www.icse.hcmut.edu.vn has address 103.18.6.44
+imp.hcmut.edu.vn has address 103.221.220.25
+www.imp.hcmut.edu.vn has address 103.221.220.25
+impactmap.hcmut.edu.vn has address 61.28.227.157
+iot.hcmut.edu.vn has address 61.28.227.157
+iotlab.hcmut.edu.vn has address 210.211.113.130
+iro.hcmut.edu.vn has address 112.213.89.46
+www.iro.hcmut.edu.vn has address 112.213.89.46
+it.hcmut.edu.vn has address 103.88.121.162
+tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+www.tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+ktx.hcmut.edu.vn has address 203.205.32.235
+opac.lib.hcmut.edu.vn has address 103.88.121.159
+portal.lib.hcmut.edu.vn has address 221.133.13.104
+server.lib.hcmut.edu.vn has address 112.213.85.46
+lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+www.lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+log.hcmut.edu.vn has address 221.133.13.108
+logserver.hcmut.edu.vn has address 221.133.13.108
+meet.hcmut.edu.vn has address 14.241.245.187
+meganet.hcmut.edu.vn has address 10.128.0.1
+meganet-gateway.hcmut.edu.vn has address 14.169.141.126
+meganet-gateway2.hcmut.edu.vn has address 14.169.17.32
+meganet02.hcmut.edu.vn has address 10.130.0.1
+meganet2.hcmut.edu.vn has address 10.228.0.1
+membrane2014.hcmut.edu.vn has address 112.213.89.144
+mining.hcmut.edu.vn has address 103.88.121.145
+mybk.hcmut.edu.vn has address 221.133.13.124
+netdata.hcmut.edu.vn has address 221.133.13.116
+ntop.hcmut.edu.vn has address 221.133.13.115
+oisp.hcmut.edu.vn has address 103.90.220.204
+sinhvien.oisp.hcmut.edu.vn has address 221.132.17.180
+personel.hcmut.edu.vn has address 221.133.13.127
+pgs.hcmut.edu.vn has address 221.133.13.112
+portal.hcmut.edu.vn has address 221.133.13.108
+private01.hcmut.edu.vn has address 10.130.0.1
+private6.hcmut.edu.vn has address 10.228.0.1
+pssp.hcmut.edu.vn has address 221.133.13.105
+public.hcmut.edu.vn has address 172.28.232.1
+public2.hcmut.edu.vn has address 10.28.232.1
+qlns.hcmut.edu.vn has address 221.133.13.108
+radius01.hcmut.edu.vn has address 221.133.12.6
+radius1.hcmut.edu.vn has address 221.133.12.6
+recsys.hcmut.edu.vn has address 221.133.13.106
+rsce2016.hcmut.edu.vn has address 103.227.177.226
+sc.hcmut.edu.vn has address 221.133.13.121
+scc.hcmut.edu.vn has address 61.28.227.157
+server02.hcmut.edu.vn has address 221.133.13.115
+server03.hcmut.edu.vn has address 203.205.32.236
+server04.hcmut.edu.vn has address 221.133.13.114
+server05.hcmut.edu.vn has address 221.133.13.116
+server06.hcmut.edu.vn has address 203.205.32.235
+server07.hcmut.edu.vn has address 221.133.13.117
+server09.hcmut.edu.vn has address 203.205.32.235
+server11.hcmut.edu.vn has address 221.133.13.117
+server12.hcmut.edu.vn has address 221.133.13.118
+server14.hcmut.edu.vn has address 221.133.13.108
+server15.hcmut.edu.vn has address 221.133.13.115
+server236.hcmut.edu.vn has address 221.133.13.110
+server30.hcmut.edu.vn has address 221.133.13.121
+server80.hcmut.edu.vn has address 221.133.13.119
+server89.hcmut.edu.vn has address 221.133.13.120
+shms.hcmut.edu.vn has address 221.133.13.111
+sso.hcmut.edu.vn has address 221.133.13.120
+sso-net.hcmut.edu.vn has address 221.133.13.111
+sso-net2.hcmut.edu.vn has address 221.133.13.111
+test.hcmut.edu.vn has address 221.133.13.108
+traffic.hcmut.edu.vn has address 103.88.121.161
+tris.hcmut.edu.vn has address 14.161.5.98
+tuyensinh.hcmut.edu.vn has address 221.133.13.124
+tv-cam01.hcmut.edu.vn has address 221.133.13.114
+tv-cam02.hcmut.edu.vn has address 221.133.13.115
+tv-cam03.hcmut.edu.vn has address 113.161.83.117
+uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+www.uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+vre.hcmut.edu.vn has address 103.88.121.151
+wifi-controller.hcmut.edu.vn has address 221.133.13.110
+wifi-cse.hcmut.edu.vn has address 172.28.211.1
+wiki.hcmut.edu.vn has address 221.133.13.124
+
+---------------------------------------------------------
+## Nameserver: dns1.hcmut.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: dns1.hcmut.edu.vn.
+Address: 221.133.13.114#53
+Aliases: 
+
+Host hcmut.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: dns3.hcmut.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: dns3.hcmut.edu.vn.
+Address: 203.205.32.235#53
+Aliases: 
+
+hcmut.edu.vn name server dns1.hcmut.edu.vn.
+hcmut.edu.vn name server dns2.hcmut.edu.vn.
+hcmut.edu.vn name server dns3.hcmut.edu.vn.
+hcmut.edu.vn name server dns4.hcmut.edu.vn.
+hcmut.edu.vn has address 221.133.13.114
+60.hcmut.edu.vn has address 112.213.89.2
+aao.hcmut.edu.vn has address 221.133.13.122
+apps.aao.hcmut.edu.vn has address 221.133.13.124
+server.aao.hcmut.edu.vn has address 221.133.13.122
+actbk.hcmut.edu.vn has address 221.133.13.127
+alumni.hcmut.edu.vn has address 221.133.13.109
+amis.hcmut.edu.vn has address 221.133.13.106
+bkiot.hcmut.edu.vn has address 210.211.113.130
+bkpay.hcmut.edu.vn has address 221.133.13.124
+bksi.hcmut.edu.vn has address 221.133.13.118
+bkyst.hcmut.edu.vn has address 45.119.83.20
+bridge.hcmut.edu.vn has address 113.176.61.107
+bridge2.hcmut.edu.vn has address 123.30.157.251
+carerescif.hcmut.edu.vn has address 112.213.89.145
+www.carerescif.hcmut.edu.vn has address 112.213.89.145
+casdev-master.hcmut.edu.vn has address 221.133.13.105
+cc.hcmut.edu.vn has address 112.78.1.105
+cce.hcmut.edu.vn has address 112.78.1.105
+conferences.hcmut.edu.vn has address 221.133.13.111
+www.conferences.hcmut.edu.vn has address 221.133.13.111
+cse.hcmut.edu.vn has address 221.133.13.113
+60.cse.hcmut.edu.vn has address 61.28.227.157
+doanhoi.cse.hcmut.edu.vn has address 45.119.83.33
+elearning.cse.hcmut.edu.vn has address 221.133.13.110
+internship.cse.hcmut.edu.vn has address 221.133.13.108
+server.cse.hcmut.edu.vn has address 221.133.13.113
+vre.cse.hcmut.edu.vn has address 103.88.121.151
+ctct.hcmut.edu.vn has address 125.212.245.195
+dcselab.hcmut.edu.vn has address 221.132.37.37
+demo.hcmut.edu.vn has address 221.133.13.105
+diemthi.hcmut.edu.vn has address 221.133.13.122
+diemthi.hcmut.edu.vn has address 103.88.121.145
+diemthi.hcmut.edu.vn has address 115.78.0.48
+dkmh.hcmut.edu.vn has address 221.133.13.124
+dls.hcmut.edu.vn has address 103.88.121.156
+dns1.hcmut.edu.vn has address 221.133.13.114
+dns2.hcmut.edu.vn has address 221.133.13.115
+dns3.hcmut.edu.vn has address 203.205.32.235
+dns4.hcmut.edu.vn has address 203.205.32.236
+dae.dte.hcmut.edu.vn has address 171.244.43.27
+www.dae.dte.hcmut.edu.vn has address 171.244.43.27
+e-learning.hcmut.edu.vn has address 221.133.13.123
+elearning-cse.hcmut.edu.vn has address 221.133.13.107
+fdse2017.hcmut.edu.vn has address 61.28.227.157
+fe.hcmut.edu.vn has address 52.74.151.191
+fenr.hcmut.edu.vn has address 112.213.89.145
+www.fenr.hcmut.edu.vn has address 112.213.89.145
+hre.fme.hcmut.edu.vn has address 125.212.209.56
+ise.fme.hcmut.edu.vn has address 103.48.81.8
+gateway01.hcmut.edu.vn has address 14.241.245.110
+gateway02.hcmut.edu.vn has address 221.133.12.6
+gateway2.hcmut.edu.vn has address 113.161.83.117
+gpu02.hcmut.edu.vn has address 103.88.121.152
+gpu11.hcmut.edu.vn has address 103.88.121.150
+grad.hcmut.edu.vn has address 221.133.13.127
+graylog.hcmut.edu.vn has address 221.133.13.115
+gtsw2019.hcmut.edu.vn has address 166.62.28.82
+www.gtsw2019.hcmut.edu.vn has address 166.62.28.82
+hnkhcn2013.hcmut.edu.vn has address 112.213.89.149
+hpcc.hcmut.edu.vn has address 203.205.33.134
+hpccbk.hcmut.edu.vn has address 116.118.106.108
+hpccportal.hcmut.edu.vn has address 203.205.33.134
+hpclab.hcmut.edu.vn has address 103.88.121.154
+icse.hcmut.edu.vn has address 103.18.6.44
+www.icse.hcmut.edu.vn has address 103.18.6.44
+imp.hcmut.edu.vn has address 103.221.220.25
+www.imp.hcmut.edu.vn has address 103.221.220.25
+impactmap.hcmut.edu.vn has address 61.28.227.157
+iot.hcmut.edu.vn has address 61.28.227.157
+iotlab.hcmut.edu.vn has address 210.211.113.130
+iro.hcmut.edu.vn has address 112.213.89.46
+www.iro.hcmut.edu.vn has address 112.213.89.46
+it.hcmut.edu.vn has address 103.88.121.162
+tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+www.tracuuhoadon.khtc.hcmut.edu.vn has address 103.145.62.137
+ktx.hcmut.edu.vn has address 203.205.32.235
+opac.lib.hcmut.edu.vn has address 103.88.121.159
+portal.lib.hcmut.edu.vn has address 221.133.13.104
+server.lib.hcmut.edu.vn has address 112.213.85.46
+lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+www.lmpi-erasmus.hcmut.edu.vn has address 221.133.13.113
+log.hcmut.edu.vn has address 221.133.13.108
+logserver.hcmut.edu.vn has address 221.133.13.108
+meet.hcmut.edu.vn has address 14.241.245.187
+meganet.hcmut.edu.vn has address 10.128.0.1
+meganet-gateway.hcmut.edu.vn has address 14.169.141.126
+meganet-gateway2.hcmut.edu.vn has address 14.169.17.32
+meganet02.hcmut.edu.vn has address 10.130.0.1
+meganet2.hcmut.edu.vn has address 10.228.0.1
+membrane2014.hcmut.edu.vn has address 112.213.89.144
+mining.hcmut.edu.vn has address 103.88.121.145
+mybk.hcmut.edu.vn has address 221.133.13.124
+netdata.hcmut.edu.vn has address 221.133.13.116
+ntop.hcmut.edu.vn has address 221.133.13.115
+oisp.hcmut.edu.vn has address 103.90.220.204
+sinhvien.oisp.hcmut.edu.vn has address 221.132.17.180
+personel.hcmut.edu.vn has address 221.133.13.127
+pgs.hcmut.edu.vn has address 221.133.13.112
+portal.hcmut.edu.vn has address 221.133.13.108
+private01.hcmut.edu.vn has address 10.130.0.1
+private6.hcmut.edu.vn has address 10.228.0.1
+pssp.hcmut.edu.vn has address 221.133.13.105
+public.hcmut.edu.vn has address 172.28.232.1
+public2.hcmut.edu.vn has address 10.28.232.1
+qlns.hcmut.edu.vn has address 221.133.13.108
+radius01.hcmut.edu.vn has address 221.133.12.6
+radius1.hcmut.edu.vn has address 221.133.12.6
+recsys.hcmut.edu.vn has address 221.133.13.106
+rsce2016.hcmut.edu.vn has address 103.227.177.226
+sc.hcmut.edu.vn has address 221.133.13.121
+scc.hcmut.edu.vn has address 61.28.227.157
+server02.hcmut.edu.vn has address 221.133.13.115
+server03.hcmut.edu.vn has address 203.205.32.236
+server04.hcmut.edu.vn has address 221.133.13.114
+server05.hcmut.edu.vn has address 221.133.13.116
+server06.hcmut.edu.vn has address 203.205.32.235
+server07.hcmut.edu.vn has address 221.133.13.117
+server09.hcmut.edu.vn has address 203.205.32.235
+server11.hcmut.edu.vn has address 221.133.13.117
+server12.hcmut.edu.vn has address 221.133.13.118
+server14.hcmut.edu.vn has address 221.133.13.108
+server15.hcmut.edu.vn has address 221.133.13.115
+server236.hcmut.edu.vn has address 221.133.13.110
+server30.hcmut.edu.vn has address 221.133.13.121
+server80.hcmut.edu.vn has address 221.133.13.119
+server89.hcmut.edu.vn has address 221.133.13.120
+shms.hcmut.edu.vn has address 221.133.13.111
+sso.hcmut.edu.vn has address 221.133.13.120
+sso-net.hcmut.edu.vn has address 221.133.13.111
+sso-net2.hcmut.edu.vn has address 221.133.13.111
+test.hcmut.edu.vn has address 221.133.13.108
+traffic.hcmut.edu.vn has address 103.88.121.161
+tris.hcmut.edu.vn has address 14.161.5.98
+tuyensinh.hcmut.edu.vn has address 221.133.13.124
+tv-cam01.hcmut.edu.vn has address 221.133.13.114
+tv-cam02.hcmut.edu.vn has address 221.133.13.115
+tv-cam03.hcmut.edu.vn has address 113.161.83.117
+uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+www.uiseminar2017.hcmut.edu.vn has address 198.252.111.243
+vre.hcmut.edu.vn has address 103.88.121.151
+wifi-controller.hcmut.edu.vn has address 221.133.13.110
+wifi-cse.hcmut.edu.vn has address 172.28.211.1
+wiki.hcmut.edu.vn has address 221.133.13.124
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: uel.edu.vn
+## Nameserver: ns2.dns.net.vn.
+### Transferring zone...
+Using domain server:
+Name: ns2.dns.net.vn.
+Address: 103.45.229.100#53
+Aliases: 
+
+Host uel.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: ns1.dns.net.vn.
+### Transferring zone...
+Using domain server:
+Name: ns1.dns.net.vn.
+Address: 210.211.108.160#53
+Aliases: 
+
+Host uel.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: hcmier.edu.vn
+## Nameserver: server.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: server.vnuhcm.edu.vn.
+Address: 103.88.121.201#53
+Aliases: 
+
+Host hcmier.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: vnuserv.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: vnuserv.vnuhcm.edu.vn.
+Address: 103.88.121.200#53
+Aliases: 
+
+Host hcmier.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: vnuhcm.edu.vn
+## Nameserver: ns1.vdc2.vn.
+### Transferring zone...
+Using domain server:
+Name: ns1.vdc2.vn.
+Address: 14.225.232.186#53
+Aliases: 
+
+Host vnuhcm.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: ns2.vdc2.vn.
+### Transferring zone...
+Using domain server:
+Name: ns2.vdc2.vn.
+Address: 14.225.232.23#53
+Aliases: 
+
+vnuhcm.edu.vn has address 103.88.121.29
+vnuhcm.edu.vn name server vnuserv.vnuhcm.edu.vn.
+vnuhcm.edu.vn name server server.vnuhcm.edu.vn.
+www.4s.vnuhcm.edu.vn has address 118.69.204.199
+aaa.vnuhcm.edu.vn has address 103.88.123.21
+aaa1.vnuhcm.edu.vn has address 103.88.123.22
+aad.vnuhcm.edu.vn has address 203.162.44.60
+ab.vnuhcm.edu.vn has address 203.162.147.252
+aun.vnuhcm.edu.vn has address 203.162.147.168
+baixektx.vnuhcm.edu.vn has address 123.30.236.140
+baocaoaad.vnuhcm.edu.vn has address 203.162.44.60
+mssql.baocaoaad.vnuhcm.edu.vn has address 203.162.44.60
+betaaad.vnuhcm.edu.vn has address 222.255.69.252
+cdio2015.vnuhcm.edu.vn has address 221.133.13.127
+cea.vnuhcm.edu.vn has address 103.88.123.7
+csgd.cea.vnuhcm.edu.vn has address 103.88.123.7
+database.cea.vnuhcm.edu.vn has address 103.88.123.7
+dkht.cea.vnuhcm.edu.vn has address 103.88.123.7
+cete.vnuhcm.edu.vn has address 103.88.123.2
+chrd.vnuhcm.edu.vn has address 203.162.147.149
+club.vnuhcm.edu.vn has address 203.162.147.185
+www.cntttt.vnuhcm.edu.vn has address 203.162.44.72
+congdoan.vnuhcm.edu.vn has address 118.69.123.142
+cpmu-demo.vnuhcm.edu.vn has address 103.88.121.59
+cpmu-demo1.vnuhcm.edu.vn has address 112.78.11.146
+cps.vnuhcm.edu.vn has address 112.78.11.146
+ct.vnuhcm.edu.vn has address 203.162.147.252
+data.vnuhcm.edu.vn has address 203.162.147.185
+dataonline.vnuhcm.edu.vn has address 203.162.44.60
+demo.vnuhcm.edu.vn has address 103.88.121.29
+demo-cloud.vnuhcm.edu.vn has address 103.88.121.64
+demo-khcn.vnuhcm.edu.vn has address 203.162.147.185
+demo-lms.vnuhcm.edu.vn has address 103.88.121.142
+demo-portal.vnuhcm.edu.vn has address 203.128.241.215
+demo-portal-admin.vnuhcm.edu.vn has address 203.128.241.215
+demo-portal-static.vnuhcm.edu.vn has address 203.128.241.21
+demo1.vnuhcm.edu.vn has address 203.162.147.185
+demotuyensinh.vnuhcm.edu.vn has address 203.162.147.186
+doancoquan.vnuhcm.edu.vn has address 203.162.147.186
+doancoquan.vnuhcm.edu.vn has address 103.74.123.10
+doantn.vnuhcm.edu.vn has address 203.162.44.83
+email-reply.vnuhcm.edu.vn has address 103.88.121.53
+gddhhoinhapquocte.vnuhcm.edu.vn has address 123.30.191.189
+greeting-card.vnuhcm.edu.vn has address 203.162.147.185
+hoidong.vnuhcm.edu.vn has address 203.162.147.185
+hoithaocokhi.vnuhcm.edu.vn has address 165.22.97.200
+hoithaogiaothong.vnuhcm.edu.vn has address 206.189.35.164
+hosting.vnuhcm.edu.vn has address 203.162.147.185
+hotrokythuat.vnuhcm.edu.vn has address 112.78.11.146
+idm.vnuhcm.edu.vn has address 103.88.123.51
+it-support.vnuhcm.edu.vn has address 112.78.11.146
+jobs.vnuhcm.edu.vn has address 103.88.123.54
+khaosat.vnuhcm.edu.vn has address 203.162.147.185
+khcn.vnuhcm.edu.vn has address 203.162.147.185
+quanly.khcn.vnuhcm.edu.vn has address 118.69.123.142
+khcn2018.vnuhcm.edu.vn has address 103.88.121.35
+khoanhkhacdothidaihoc.vnuhcm.edu.vn has address 123.30.78.232
+kitucxa.vnuhcm.edu.vn has address 45.117.77.102
+ksknsvtn.vnuhcm.edu.vn has address 203.162.44.60
+ktx.vnuhcm.edu.vn has address 45.117.77.103
+mail.ktx.vnuhcm.edu.vn has address 203.162.44.60
+ktxdhqg.vnuhcm.edu.vn has address 45.117.77.102
+ktxdhqghcm.vnuhcm.edu.vn has address 123.30.236.140
+lichtuan.vnuhcm.edu.vn has address 203.162.147.195
+live.vnuhcm.edu.vn has address 42.116.11.16
+manage-01.vnuhcm.edu.vn has address 103.88.123.64
+manage-02.vnuhcm.edu.vn has address 103.88.121.41
+meeting.vnuhcm.edu.vn has address 203.162.147.247
+noc.vnuhcm.edu.vn has address 112.78.10.40
+ns.vnuhcm.edu.vn has address 10.159.136.186
+ns1.vnuhcm.edu.vn has address 10.159.136.186
+ns2.vnuhcm.edu.vn has address 10.159.136.186
+ntb.vnuhcm.edu.vn has address 103.88.88.88
+phapluat.vnuhcm.edu.vn has address 74.86.148.43
+portal-st.vnuhcm.edu.vn has address 103.88.121.38
+qlcb.vnuhcm.edu.vn has address 118.69.123.137
+qlda-vp.vnuhcm.edu.vn has address 103.88.121.138
+qlda-xd.vnuhcm.edu.vn has address 103.88.121.137
+qldt.vnuhcm.edu.vn has address 103.88.121.38
+qtmvp.vnuhcm.edu.vn has address 203.163.1.150
+quanlydetai.vnuhcm.edu.vn has address 115.78.164.32
+rankingdata.vnuhcm.edu.vn has address 103.88.121.33
+rk.vnuhcm.edu.vn has address 103.88.121.33
+rkd.vnuhcm.edu.vn has address 103.88.121.33
+rm.vnuhcm.edu.vn has address 103.88.121.37
+rnm.vnuhcm.edu.vn has address 103.88.121.37
+server.vnuhcm.edu.vn has address 103.88.121.201
+server.vnuhcm.edu.vn has address 10.159.136.186
+server3.vnuhcm.edu.vn has address 203.162.147.149
+sm-vnu.vnuhcm.edu.vn has address 203.162.44.47
+static.vnuhcm.edu.vn has address 103.88.121.29
+svktx.vnuhcm.edu.vn has address 45.117.77.102
+tapchikhoahoc.vnuhcm.edu.vn has address 203.162.147.185
+tchc.vnuhcm.edu.vn has address 203.162.147.241
+test.vnuhcm.edu.vn has address 203.162.147.186
+testbed.vnuhcm.edu.vn has address 203.162.44.55
+testing.vnuhcm.edu.vn has address 203.162.147.179
+testweb.vnuhcm.edu.vn has address 123.30.78.233
+thinangluc.vnuhcm.edu.vn has address 118.69.123.136
+thinangluc.vnuhcm.edu.vn has address 45.122.249.72
+thinangluc-test.vnuhcm.edu.vn has address 221.133.13.124
+thumoi.vnuhcm.edu.vn has address 125.253.116.180
+thuongnien.vnuhcm.edu.vn has address 203.162.147.252
+tspl.vnuhcm.edu.vn has address 203.162.44.60
+ttgdqp.vnuhcm.edu.vn has address 222.255.69.250
+ttqlptkdt.vnuhcm.edu.vn has address 203.162.44.60
+ttqlptkdt-beta.vnuhcm.edu.vn has address 203.162.44.60
+tttdtt.vnuhcm.edu.vn has address 103.88.123.130
+tuoitre.vnuhcm.edu.vn has address 210.211.118.168
+tuvantuyensinh.vnuhcm.edu.vn has address 203.162.147.185
+dangky.tuyensinh.vnuhcm.edu.vn has address 203.162.147.196
+vc.vnuhcm.edu.vn has address 171.244.28.100
+vnu-f.vnuhcm.edu.vn has address 103.88.121.141
+www.vnu-f.vnuhcm.edu.vn has address 103.88.121.141
+vnu-f2.vnuhcm.edu.vn has address 103.88.123.5
+vnu20.vnuhcm.edu.vn has address 203.162.147.185
+vnuc.vnuhcm.edu.vn has address 112.78.11.146
+vnuserv.vnuhcm.edu.vn has address 103.88.121.200
+vnuserv.vnuhcm.edu.vn has address 10.159.136.186
+voice.vnuhcm.edu.vn has address 203.162.147.187
+wifi.vnuhcm.edu.vn has address 10.238.239.1
+www.vnuhcm.edu.vn has address 103.88.121.29
+
+---------------------------------------------------------
+## Nameserver: server.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: server.vnuhcm.edu.vn.
+Address: 103.88.121.201#53
+Aliases: 
+
+Host vnuhcm.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+## Nameserver: vnuserv.vnuhcm.edu.vn.
+### Transferring zone...
+Using domain server:
+Name: vnuserv.vnuhcm.edu.vn.
+Address: 103.88.121.200#53
+Aliases: 
+
+Host vnuhcm.edu.vn not found: 5(REFUSED)
+; Transfer failed.
+
+---------------------------------------------------------
+
+################################################################
+
+# Domain: agu.edu.vn
+## Nameserver: out;
+### Transferring zone...
+
+---------------------------------------------------------
+
+################################################################
+```
 
 ## Câu 35
 ### Question
