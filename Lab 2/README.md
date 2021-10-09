@@ -163,6 +163,25 @@ Sử dụng công cụ theHarvester để lấy tìm kiếm các địa c
 ### Answer
 ![image](https://user-images.githubusercontent.com/44528004/136160112-8cc3f728-b626-4582-83d3-303b85fd6666.png)  
 
+## Câu 18
+### Question
+Sử dụng với nguồn tìm kiếm khác (-b). Theo bạn, kết quả của nguồn nào tốt hơn?
+
+### Answer
+#### Bing
+![image](https://user-images.githubusercontent.com/44528004/136662925-cb9dc1ae-04a4-4418-ae57-2328acd85963.png)
+
+
+#### Google
+![image](https://user-images.githubusercontent.com/44528004/136662950-ac022547-dffd-4a4f-bccf-6fd076dbf6e7.png)
+
+#### Baidu
+![image](https://user-images.githubusercontent.com/44528004/136662971-6155af1c-08f5-4a7e-87ae-26892edd93b1.png)
+
+#### DuckDuckGo
+![image](https://user-images.githubusercontent.com/44528004/136663005-e9a24dda-001c-43b5-8564-56334b71d77d.png)
+
+> Từ một số ví dụ trên, ta có thể thấy là Google tốt hơn.
 
 ## Câu 19
 ### Question
