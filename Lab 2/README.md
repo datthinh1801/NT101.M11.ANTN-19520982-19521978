@@ -206,6 +206,13 @@ câu b: Các website và địa chỉ IP tương ứng:
 
 ![image](https://user-images.githubusercontent.com/31529599/136167270-fa4fcfd0-6643-42b7-b43e-adb1764ac1cc.png)
 
+## Câu 21
+### Question
+Ngoài các bản ghi kể trên, hãy liệt kê các bản ghi khác của DNS.
+
+### Answer
+Ngoài NS, A, MX, PTR, CNAME, TXT, còn có các bản ghi khác như AAAA, SOA, SRV, AFSDB, APL, CAA, DNSKEY, CDNSKEY, CERT, DCHID, DNAME, HIP, IPSECKEY, LOC, NAPTR, NSEC, RRSIG, RP, và SSHFP.
+> https://www.cloudflare.com/learning/dns/dns-records/
 
 ## Câu 35: Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2)
 
