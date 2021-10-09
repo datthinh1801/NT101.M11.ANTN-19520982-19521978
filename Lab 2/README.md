@@ -126,6 +126,23 @@ Ta có thể phân giải tên miền bằng cách sử dụng module `recon/hos
 ![image](https://user-images.githubusercontent.com/44528004/136660945-4d26d4da-91e1-4818-bf4c-34a81633764c.png)
 > Để có thể sử dụng module này, từ module `netcraft`, ta dùng lệnh `back` và sau đó load module `resolve` và `run` như thông thường.
 
+## Câu 15
+### Question
+Thực hiện tìm kiếm các lệnh khác trên Shodan mà có thể tiết lộ thêm nhiều thông tin thú vị về một đối tượng bất kỳ.
+
+### Answer
+Sử dụng filters:
+| Filter | Ý nghĩa |
+|---|---|
+| city | Dùng để tìm thiết bị tại một thành phố nào đó |
+| country | Dùng để tìm thiết bị tại một quốc gia nào đó |
+| geo | Dùng cho tọa độ |
+| hostname | Tìm theo hostname |
+| net | Tìm theo địa chỉ IP |
+| os | Tìm theo hệ điều hành |
+| `+` hoặc `-` | `AND` hoặc `NOT` một filter nào đó |
+| port | Tìm theo port được mở |
+| before/after | Tìm theo thời gian |
 
 ## Câu 17
 ### Question
