@@ -1107,6 +1107,299 @@ Host vnuhcm.edu.vn not found: 5(REFUSED)
 ################################################################
 ```
 
+
+## Câu 26
+### Question
+Viết Liệt kê danh sách các loại enumeration có thể được sử dụng cùng với tùy chọn -t
+
+### Anwser
+
+```
+std: SOA, NS, A, AAAA, MX and SRV.
+
+rvl: Reverse lookup of a given CIDR or IP range.
+
+brt: Brute force domains and hosts using a given dictionary.
+
+srv: SRV records.
+
+axfr: Test all NS servers for a zone transfer.
+
+bing: Perform Bing search for subdomains and hosts.
+
+yand: Perform Yandex search for subdomains and hosts.
+
+crt: Perform crt.sh search for subdomains and hosts.
+
+snoop: Perform cache snooping against all NS servers for a given domain, testing all with file containing the domains, file given with -D option.
+
+tld: Remove the TLD of given domain and test against all TLDs registered in IANA.
+
+zonewalk: Perform a DNSSEC zone walk using NSEC records.
+
+```
+
+## Câu 27
+### Question
+Cho một vài ví dụ sử dụng kết hợp các tùy chọn được DNSRecon hỗ trợ khác (ít nhất là 2 ví dụ)
+
+### Anwser
+Kết hợp tùy chọn threads:
+
+![image](https://user-images.githubusercontent.com/31529599/137054485-6fedc6d2-f6ea-4e2d-9859-3f6e4e872c1d.png)
+
+Tùy chọn `tcp`:
+
+![image](https://user-images.githubusercontent.com/31529599/137054635-9edaa91a-7ece-4b63-9c52-76eb4478e711.png)
+
+
+## Câu 28
+### Question
+So sánh 2 công cụ DNSEnum và DNSRecon? Công cụ nào dễ sử dụng hơn? Công cụ nào cho kết quả chính xác hơn? Công cụ nào hiển thị nhiều kết quả hơn?
+
+### Anwser
+
+## Câu 29
+### Question
+Thực hiện bắt Wireshark để mô tả cách gói tin được gửi và nhận khi thực hiện SYN Scan sử dụng Nmap
+
+### Anwser
+
+SYN Scanning:
+
+![image](https://user-images.githubusercontent.com/31529599/137056857-3c466e5e-79b8-4740-b663-aa5d426c3533.png)
+
+Wireshark:
+
+![image](https://user-images.githubusercontent.com/31529599/137056554-e78c74be-8d2b-49cf-8f57-8a9b8cf1e9a6.png)
+
+Ngay tại gói `909` máy victim (192.168.21.137) gởi về gói `SYN ACK` cho attacker (nmap: 192.168.21.130) từ port `2121` nên port này đang được mở
+
+Ngay tại gói `910` máy victim (192.168.21.137) gởi về gói `SYN RST` cho attacker (nmap: 192.168.21.130) từ port `3766` nên port này đang đóng
+
+
+
+## Câu 30
+### Question
+Thực hiện bắt Wireshark để mô tả cách gói tin được gửi và nhận khi thực hiện TCP Connect Scan sử dụng Nmap.
+
+### Anwser
+
+TCP connect Scan:
+
+![image](https://user-images.githubusercontent.com/31529599/137057059-d7c97f37-9d46-47f4-9f2b-9ce11cd91386.png)
+
+
+![image](https://user-images.githubusercontent.com/31529599/137057707-98a8aa7e-b63f-40c2-b489-7d8b8ca2b832.png)
+
+Gói 1721 attacker gởi gói `SYN` tới máy victim
+
+Gói 1752 victim phản hồi lại gói `SYN, ACK` lại cho máy attacker tại port `512`
+
+Gói 1757, 1769 attacker phản hồi gói `ACK` và `RST, ACK` cho máy victim
+
+=> port `512` đang mở
+
+![image](https://user-images.githubusercontent.com/31529599/137058072-d31b712e-71fa-4ffb-b04e-80c32aeeb2ac.png)
+
+Gói 30 attacker gởi gói `SYN` tới máy victim
+
+Gói 48 máy victim phản hồi gói `RST, ACK` tại port `256` nên port này đóng
+
+
+
+
+## Câu 31
+### Question
+So sánh với sử dụng phương thức SYN Scan (số lượng gói tin được gửi, số lượng gói tin được nhận, thời gian quét, kết quả hiển thị…)
+
+Số lượng gói tin được gởi
+
+SYN Scan: 1023
+TCP Scan : 1048
+
+Số lượng gói tin nhận:
+SYN Scan: 1000
+TCP Scan : 1002
+
+Thời gian quét
+SYN Scan: 13.34 seconds
+TCP Scan : 13.30 seconds
+
+
+
+
+### Anwser
+
+## Câu 32
+### Question
+Thực hiện kiểm tra các host đang hoạt trong mạng bằng các ngôn ngữ lập trình khác (Bash script, Python, C/C++, Perl, …)
+
+### Anwser
+
+Script python:
+
+![image](https://user-images.githubusercontent.com/31529599/137065195-169a4870-dd44-4d56-bb5f-2dfaf7242a15.png)
+
+Host: `192.168.21.1` và `192.168.21.2` đang hoạt động
+
+
+## Câu 33
+### Question
+Sử dụng Wireshark để phân tích gói tin khi sử dụng Nmap với tùy chọn -sn
+
+### Anwser
+
+Network Sweeping:
+
+![image](https://user-images.githubusercontent.com/31529599/137061966-827dbda2-ab3d-4d27-84c0-7003991c946b.png)
+
+![image](https://user-images.githubusercontent.com/31529599/137062324-3dad4024-fb7c-4e0d-9b4d-e00908a2db88.png)
+
+Sử dụng DNS query để kiểm tra host is up
+
+## Câu 34
+### Question
+Liệt kê các banner, dịch vụ đang chạy trên máy Metasploitable 2 (chỉ liệt kê các dịch vụ TCP)
+
+### Anwser
+
+```bash
+└─$ sudo nmap -sV -sT -A 192.168.21.137                                                                    1 ⨯
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-10-13 00:06 EDT
+Nmap scan report for 192.168.21.137
+Host is up (0.0019s latency).
+Not shown: 977 closed ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.21.130
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      vsFTPd 2.3.4 - secure, fast, stable
+|_End of status
+22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+|_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+23/tcp   open  telnet      Linux telnetd
+25/tcp   open  smtp        Postfix smtpd
+|_smtp-commands: metasploitable.localdomain, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, 
+|_ssl-date: 2021-10-13T04:06:51+00:00; +5s from scanner time.
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_RC4_128_EXPORT40_WITH_MD5
+|     SSL2_RC2_128_CBC_WITH_MD5
+|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+|     SSL2_DES_64_CBC_WITH_MD5
+|     SSL2_RC4_128_WITH_MD5
+|_    SSL2_DES_192_EDE3_CBC_WITH_MD5
+53/tcp   open  domain      ISC BIND 9.4.2
+| dns-nsid: 
+|_  bind.version: 9.4.2
+80/tcp   open  http        Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+|_http-server-header: Apache/2.2.8 (Ubuntu) DAV/2
+|_http-title: Metasploitable2 - Linux
+111/tcp  open  rpcbind     2 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2            111/tcp   rpcbind
+|   100000  2            111/udp   rpcbind
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/udp   nfs
+|   100005  1,2,3      44186/tcp   mountd
+|   100005  1,2,3      52453/udp   mountd
+|   100021  1,3,4      38601/tcp   nlockmgr
+|   100021  1,3,4      43708/udp   nlockmgr
+|   100024  1          39004/tcp   status
+|_  100024  1          58936/udp   status
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+512/tcp  open  exec        netkit-rsh rexecd
+513/tcp  open  login
+514/tcp  open  tcpwrapped
+1099/tcp open  java-rmi    GNU Classpath grmiregistry
+1524/tcp open  bindshell   Metasploitable root shell
+2049/tcp open  nfs         2-4 (RPC #100003)
+2121/tcp open  ftp         ProFTPD 1.3.1
+3306/tcp open  mysql       MySQL 5.0.51a-3ubuntu5
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.0.51a-3ubuntu5
+|   Thread ID: 10
+|   Capabilities flags: 43564
+|   Some Capabilities: SupportsTransactions, LongColumnFlag, SupportsCompression, SwitchToSSLAfterHandshake, Support41Auth, Speaks41ProtocolNew, ConnectWithDatabase
+|   Status: Autocommit
+|_  Salt: 35Rz1%a>OS4FFjd:0#\*
+5432/tcp open  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
+|_ssl-date: 2021-10-13T04:06:51+00:00; +5s from scanner time.
+5900/tcp open  vnc         VNC (protocol 3.3)
+| vnc-info: 
+|   Protocol version: 3.3
+|   Security types: 
+|_    VNC Authentication (2)
+6000/tcp open  X11         (access denied)
+6667/tcp open  irc         UnrealIRCd
+| irc-info: 
+|   users: 1
+|   servers: 1
+|   lusers: 1
+|   lservers: 0
+|   server: irc.Metasploitable.LAN
+|   version: Unreal3.2.8.1. irc.Metasploitable.LAN 
+|   uptime: 0 days, 1:48:09
+|   source ident: nmap
+|   source host: 553320A5.FA98F533.FFFA6D49.IP
+|_  error: Closing Link: tifrnaamg[192.168.21.130] (Quit: tifrnaamg)
+8009/tcp open  ajp13       Apache Jserv (Protocol v1.3)
+|_ajp-methods: Failed to get a valid response for the OPTION request
+8180/tcp open  http        Apache Tomcat/Coyote JSP engine 1.1
+|_http-favicon: Apache Tomcat
+|_http-server-header: Apache-Coyote/1.1
+|_http-title: Apache Tomcat/5.5
+MAC Address: 00:0C:29:FA:DD:2A (VMware)
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.9 - 2.6.33
+Network Distance: 1 hop
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h00m05s, deviation: 2h00m01s, median: 4s
+|_nbstat: NetBIOS name: METASPLOITABLE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.20-Debian)
+|   Computer name: metasploitable
+|   NetBIOS computer name: 
+|   Domain name: localdomain
+|   FQDN: metasploitable.localdomain
+|_  System time: 2021-10-13T00:06:43-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   1.89 ms 192.168.21.137
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 43.98 seconds
+
+```
+
+
 ## Câu 35
 ### Question
 Sử dụng thêm 2 NSE script (tự chọn) để quét máy mục tiêu (Metasploitable 2).
