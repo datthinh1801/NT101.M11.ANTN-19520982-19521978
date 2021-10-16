@@ -189,6 +189,8 @@ Thực hiện tìm kiếm các địa chỉ Email của MegaCorp One sử
 
 ### Answer
 
+![image](https://user-images.githubusercontent.com/31529599/137595595-8bbe0b13-1230-4846-8619-97b99b9a58bc.png)
+
 ## Câu 20
 ### Question
 Sử dụng công cụ Maltego cho UIT (tên miền: `uit.edu.vn`) và trả lời các câu hỏi sau:
