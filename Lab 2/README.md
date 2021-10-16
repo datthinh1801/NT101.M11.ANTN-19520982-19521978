@@ -1213,6 +1213,7 @@ Gói 48 máy victim phản hồi gói `RST, ACK` tại port `256` nên port này
 ### Question
 So sánh với sử dụng phương thức SYN Scan (số lượng gói tin được gửi, số lượng gói tin được nhận, thời gian quét, kết quả hiển thị…)
 
+### Anwser
 Số lượng gói tin được gởi
 
 SYN Scan: 1023
@@ -1226,10 +1227,6 @@ Thời gian quét
 SYN Scan: 13.34 seconds
 TCP Scan : 13.30 seconds
 
-
-
-
-### Anwser
 
 ## Câu 32
 ### Question
