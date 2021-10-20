@@ -25,3 +25,10 @@ Trong một trường hợp khác ở port `90`:
 
 - Đầu tiên, máy scanner gửi gói tin TCP SYN đến máy victim.  
 - Lúc này, victim phản hồi với gói tin RST ACK để acknowlege cho gói SYN nhưng yêu cầu đóng kết nối với flag RST. Điều này đồng nghĩa với việc máy victim không mở port `90`.
+
+## Câu 4
+### Question
+Thực hiện lại các bước trên để quét máy Metasploitable 2 có sử dụng tài khoản chứng thực.  
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/138052817-dc73d885-d058-4233-8e16-8c0f42d6be1d.png)
