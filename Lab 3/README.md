@@ -32,3 +32,14 @@ Thực hiện lại các bước trên để quét máy Metasploitable 2 có s�
 
 ### Answer
 ![image](https://user-images.githubusercontent.com/44528004/138052817-dc73d885-d058-4233-8e16-8c0f42d6be1d.png)
+
+## Câu 7
+### Question
+Thực hiện lại các bước trên để quét máy Metasploitable 2 sử dụng plugin NFS Exported Share Information Disclosure.
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/138053428-e5ad689d-a826-495e-902a-3083598c5353.png)
+
+
+![image](https://user-images.githubusercontent.com/44528004/138053394-b3c7a085-58e7-4c91-9cdb-6b3dd8784176.png)
+
