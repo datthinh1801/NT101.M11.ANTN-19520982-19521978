@@ -1,7 +1,17 @@
 # Vulnerability Scanning
 ## Câu 1
+### Question
+Thực hiện lại các bước trên để quét máy Metasploitable 2 không sử dụng tài khoản chứng thực.  
+
+### Answer
+![image](https://user-images.githubusercontent.com/44528004/138049697-e0f2f58c-0dbc-465b-a8bf-88999f830e42.png)
+
 
 ## Câu 2
+### Question
+Bật Wireshark sau đó tiến hành quét và xác định các bước mà Nessus đã thực hiện để hoàn tất quá trình quét.
+
+### Answer
 Khi sử dụng wireshark và quan sát port `80` (port này đã được mở) thì ta thấy rằng:  
 - Máy scanner `10.1.1.128` sẽ gửi 1 gói tin TCP SYN để yêu cầu mở kết nối TCP tới máy victim `10.1.1.130`. Đây cũng là bước đầu tiên trong quy trình bắt tay 3 bước của TCP.  
 - Tiếp theo, máy victim sẽ phản hồi lại bằng một gói tin SYN ACK. Điều này chứng tỏ port này hiện đang mở trên máy victim và chấp nhận mở kết nối TCP.  
