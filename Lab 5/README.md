@@ -1,5 +1,17 @@
 # TCP Attacks
-## Task 1.1: Launching the Attack using Pythong
+## Task 1.1: Launching the Attack using Python
+### Trước khi tấn công
+- Máy victim `10.9.0.5`:  
+
+![image](https://user-images.githubusercontent.com/44528004/142659729-0d784920-3119-4e08-8f2a-19c6ea40d299.png)
+
+- Thử telnet từ `10.9.0.6` tới máy victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142659815-09c22988-80d6-4707-bfe2-62e4a7837569.png)
+> Thành công.
+
+
+### Tấn công
 - Attack script:
 ```python
 #! /bin/python3
@@ -20,12 +32,57 @@ while True:
     send(pkt, verbose=0)
 ```
 
+- Máy attacker:  
+
+![image](https://user-images.githubusercontent.com/44528004/142659968-e6444920-365d-4697-9fb4-a6564ee4c2ad.png)
+
+- Máy victim nhận được nhiều SYN packet để yêu cầu mở kết nối TCP:  
+
+![image](https://user-images.githubusercontent.com/44528004/142660229-6f2e065a-9ac4-4ab5-93b8-2d4c0637d9a9.png)
+
+- Thử telnet từ `10.9.0.6` tới máy victim nhưng vẫn thành công:  
+
+![image](https://user-images.githubusercontent.com/44528004/142660351-b34b122c-fde1-4d84-b671-1e9545f2ff12.png)
+
+#### Nguyên nhân
+- Khi kiểm tra `tcp_max_syn_backlog` của máy victim thì ta thấy là có 256 half-open connection được cho phép lưu vào queue:  
+
+![image](https://user-images.githubusercontent.com/44528004/142660561-988e0de1-60b5-4640-a6de-9aad4ff6da06.png)
+
+
+- Tuy nhiên số lượng half-open connection được tạo ra khi attack chỉ dao động khoảng 125 connection.  
+
+![image](https://user-images.githubusercontent.com/44528004/142660642-295d02f2-0d6c-421b-b58f-3f3d1f787f93.png)
+
+
+- Vậy để attack thành công, ta cần giảm `tcp_max_syn_backlog`.  
+    - Đợi cho các half-open connection cũ timeout:  
+    
+    ![image](https://user-images.githubusercontent.com/44528004/142660968-2fdf30bd-e93d-44a6-81e7-d5091516cdc6.png)
+
+    - Giảm `tcp_max_syn_backlog=30` và tắt `tcp_syncookies`:  
+    
+    ![image](https://user-images.githubusercontent.com/44528004/142665650-d00f9fc7-1f2d-4f40-86c0-9930783e4737.png)
+
+
+
+
 ### Kết quả
 - Tại máy victim `10.9.0.5`:
-  - Rất nhiều kết nối với source IP và source port khác nhau được tạo ra:  
+  - Rất nhiều kết nối TCP với source IP và source port khác nhau được tạo ra:  
   
-  ![image](https://user-images.githubusercontent.com/44528004/142655669-96b09f7a-78b7-42d4-a86d-525788bc6273.png)
+  ![image](https://user-images.githubusercontent.com/44528004/142665940-d3dd8afe-d0c9-4602-b5be-78b069f1e445.png)
+
 
 - Thử telnet vào máy victim thì thấy là trạng thái liên tục `Trying` và không thể kết nối tới máy victim:  
 
-![image](https://user-images.githubusercontent.com/44528004/142655862-e08bccb9-3e95-4a46-a6b7-be82ebee7865.png)
+![image](https://user-images.githubusercontent.com/44528004/142665904-76624813-0b14-40a9-b230-95a5262c72b0.png)
+
+
+## Task 1.2: Launching the Attack using C
+### Kết quả
+- Tại máy victim `10.9.0.5`, nhiều kết nối TCP với sourc IP và source port khác nhau được tạo ra:  
+
+![image](https://user-images.githubusercontent.com/44528004/142659029-6fe50e34-fbf6-4a7c-9095-dfad76bdf8f3.png)  
+
+- Thử telnet vào máy victim
