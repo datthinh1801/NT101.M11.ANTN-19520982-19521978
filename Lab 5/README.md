@@ -119,4 +119,44 @@ while True:
 > Attack thành công!  
 
 #### Kết luận
-- Vì C chạy nhanh hơn Python nên khi tấn công SYN Flood, C sẽ hiệu quả hơn. Theo mục **TCP retransmission issue** trong tài liệu hướng dẫn, sau mỗi 5 lần gửi lại gói tin SYN_ACK, nếu không thành công thì máy victim sẽ xóa connection khỏi queue và sẽ có thêm 1 slot trống. Nếu chúng ta attack nhanh thì gói tin attack sẽ lấp lỗ trống này ngay lập tức và các client hợp lệ sẽ không thể telnet đến victim. Ngược lại, nếu ta tấn công không đủ nhanh, client hợp lệ sẽ có thể tạo được connection.
+- Vì C chạy nhanh hơn Python nên khi tấn công SYN Flood, C sẽ hiệu quả hơn. Theo mục **TCP retransmission issue** trong tài liệu hướng dẫn, sau mỗi 5 lần gửi lại gói tin SYN_ACK, nếu không thành công thì máy victim sẽ xóa connection khỏi queue và sẽ có thêm 1 slot trống. Nếu chúng ta attack nhanh thì gói tin attack sẽ lấp lỗ trống này ngay lập tức và các client hợp lệ sẽ không thể telnet đến victim. Ngược lại, nếu ta tấn công không đủ nhanh, client hợp lệ sẽ có thể tạo được connection.  
+
+## Task 1.3: Enable the SYN Cookie Countermeasure
+- Mở SYN cookie trên máy victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670130-0c9326a7-70c2-47c7-b9bc-1016a042fb0a.png)
+
+### Attack bằng Python
+- Attacker:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670199-7fa0c750-bc86-4479-bd8b-7493f2f99cd4.png)
+
+
+- Victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670274-2a15e636-3e54-406b-8171-8e94c6b89596.png)
+
+
+- Telnet từ `10.9.0.6` tới máy victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670344-5617ef36-2d41-4756-9158-c876581edd73.png)
+> Telnet thành công. TẤN CÔNG THẤT BẠI.  
+
+### Attack bằng C
+- Attacker  
+
+![image](https://user-images.githubusercontent.com/44528004/142670562-dedc7e13-7954-4fb4-a1b0-66439228aee9.png)
+
+
+- Victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670589-fa6f3132-e8d1-4b6f-99d4-b168436d5100.png)
+
+
+- Telnet tới victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142670640-168902b7-b54c-45b0-8bc3-76b225915ffc.png)
+> Telnet thành công. TẤN CÔNG THẤT BẠI.  
+
+### Kết luận
+Tấn công bằng Python và C đều thất bại khi SYN cookie được bật. Do đó, SYN cookie là 1 cơ chế chống TCP SYN flood hiệu quả.
