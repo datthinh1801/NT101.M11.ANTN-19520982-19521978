@@ -76,13 +76,47 @@ while True:
 
 - Thử telnet vào máy victim thì thấy là trạng thái liên tục `Trying` và không thể kết nối tới máy victim:  
 
-![image](https://user-images.githubusercontent.com/44528004/142665904-76624813-0b14-40a9-b230-95a5262c72b0.png)
+![image](https://user-images.githubusercontent.com/44528004/142666504-4a42fb27-62da-45c2-82e4-a0336443e132.png)
+
 
 
 ## Task 1.2: Launching the Attack using C
-### Kết quả
-- Tại máy victim `10.9.0.5`, nhiều kết nối TCP với sourc IP và source port khác nhau được tạo ra:  
+### Tấn công
+- [Attack script](https://github.com/datthinh1801/seed-labs/blob/master/category-network/TCP_Attacks/Labsetup/volumes/synflood.c)  
+- Set `tcp_max_syn_backlog` về lại `256`.  
 
-![image](https://user-images.githubusercontent.com/44528004/142659029-6fe50e34-fbf6-4a7c-9095-dfad76bdf8f3.png)  
+![image](https://user-images.githubusercontent.com/44528004/142666539-268a474a-1a58-4b5c-878b-96215770c7e5.png)
 
-- Thử telnet vào máy victim
+#### Python
+- Attacker:  
+
+![image](https://user-images.githubusercontent.com/44528004/142666633-7e394099-13ba-4fc6-80ec-168a19ab9dc8.png)
+
+
+- Victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142666687-afe2178d-41d1-4e21-8735-28039665af78.png)
+
+- Thử telnet từ `10.9.0.6` tới victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142666747-3c76e075-6b45-4b24-a69e-2974f307c1ba.png)
+> Thành công
+
+#### C
+- Attacker:  
+
+![image](https://user-images.githubusercontent.com/44528004/142667077-af3f0c6a-60a4-48ca-b486-e78592613d3b.png)
+
+- Victim, có nhiều kết nối TCP với sourc IP và source port khác nhau được tạo ra:  
+
+![image](https://user-images.githubusercontent.com/44528004/142667913-05da5d67-f7b0-411b-ab9b-02e591beefd2.png)  
+
+![image](https://user-images.githubusercontent.com/44528004/142659029-6fe50e34-fbf6-4a7c-9095-dfad76bdf8f3.png)
+
+- Telnet từ `10.9.0.6` tới victim:  
+
+![image](https://user-images.githubusercontent.com/44528004/142668526-45d2ebf9-4774-4947-8628-acb65a126123.png)
+> Attack thành công!  
+
+#### Kết luận
+- Vì C chạy nhanh hơn Python nên khi tấn công SYN Flood, C sẽ hiệu quả hơn. Theo mục **TCP retransmission issue** trong tài liệu hướng dẫn, sau mỗi 5 lần gửi lại gói tin SYN_ACK, nếu không thành công thì máy victim sẽ xóa connection khỏi queue và sẽ có thêm 1 slot trống. Nếu chúng ta attack nhanh thì gói tin attack sẽ lấp lỗ trống này ngay lập tức và các client hợp lệ sẽ không thể telnet đến victim. Ngược lại, nếu ta tấn công không đủ nhanh, client hợp lệ sẽ có thể tạo được connection.
