@@ -301,3 +301,29 @@ def attack(packet):
 
 sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack)
 ```
+
+### Kết quả
+#### Tấn công 1 telnet connection đang hoạt động
+- Tạo 1 kết nối telnet trước khi attacker chạy script attack:  
+
+![image](https://user-images.githubusercontent.com/44528004/142776439-b914dcfe-33a6-4891-a80d-60997181e5a9.png)
+> Máy attacker bên trái, máy `10.9.0.5` bên phải.  
+
+- Attack chạy script:  
+
+![image](https://user-images.githubusercontent.com/44528004/142776467-569000f1-2281-4ea1-94b5-155368290aba.png)
+
+- User tiếp tục tương tác:  
+
+![image](https://user-images.githubusercontent.com/44528004/142776479-41a6644e-dc98-43e4-9120-56fe955d58b7.png)
+> Kết nối đã bị ngắt!  
+
+#### Tấn công không cho tạo telnet connection
+- Attacker chạy script attack:  
+
+![image](https://user-images.githubusercontent.com/44528004/142776492-27fead24-bf5e-4452-a3c9-0f5770520bfa.png)
+
+- Client tạo kết nối telnet:  
+
+![image](https://user-images.githubusercontent.com/44528004/142776501-9a3285a0-0c64-4074-957c-fdbba6857693.png)
+> Ngay lập tức mất kết nối!
