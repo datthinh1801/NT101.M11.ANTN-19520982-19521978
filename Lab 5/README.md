@@ -275,3 +275,6 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 			Flags: A
 			Len: 52
 		```
+### Attack
+Từ các thông tin trên, ta có thể thực hiện attack tự động để kết thúc 1 kết nối telnet đang hoạt động như sau:
+- Ta sẽ sniff các gói ACK, ta giữ nguyên source IP, destination IP, source port, destination port, sequence number và ack number. Ta set flags là `FA` và IP Len là `52`. Sau khi gửi, ta chờ để nhận gói `FA` và phản hồi lại gói `FA` này bằng 1 gói ACK với `seq` bằng `seq` của gói `FA` và `ack` bằng `seq` của gói `FA` cộng 1.
