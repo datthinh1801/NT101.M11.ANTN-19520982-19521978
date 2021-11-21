@@ -160,3 +160,94 @@ while True:
 
 ### Kết luận
 Tấn công bằng Python và C đều thất bại khi SYN cookie được bật. Do đó, SYN cookie là 1 cơ chế chống TCP SYN flood hiệu quả.
+
+## Task 2: TCP RST Attacks on telnet Connections
+### Quan sát
+- Sử dụng script sau để quan sát quá trình telnet:  
+
+```python
+#! /bin/python3
+from scapy.all import *
+
+
+def attack(packet):
+    print(f'{packet[IP].src}:{packet[TCP].sport} > {packet[IP].dst}:{packet[TCP].dport}')
+    print(f'\tSeq: {packet[TCP].seq}')
+    print(f'\tAck: {packet[TCP].ack}')
+    print(f'\tFlags: {packet[TCP].flags}')
+    print(f'\tLen: {packet[IP].len}')
+    
+    
+sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack)
+```
+
+```sh
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692662
+	Ack: 0
+	Flags: S
+	Len: 60
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676056
+	Ack: 3205692663
+	Flags: SA
+	Len: 60
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692663
+	Ack: 552676057
+	Flags: A
+	Len: 52
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692663
+	Ack: 552676057
+	Flags: PA
+	Len: 76
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676057
+	Ack: 3205692687
+	Flags: A
+	Len: 52
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676057
+	Ack: 3205692687
+	Flags: PA
+	Len: 64
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692687
+	Ack: 552676069
+	Flags: A
+	Len: 52
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676069
+	Ack: 3205692687
+	Flags: PA
+	Len: 67
+
+# --snip--
+
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676693
+	Ack: 3205692757
+	Flags: PA
+	Len: 54
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692757
+	Ack: 552676695
+	Flags: A
+	Len: 52
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676695
+	Ack: 3205692757
+	Flags: FA
+	Len: 52
+10.9.0.6:41652 > 10.9.0.5:23
+	Seq: 3205692757
+	Ack: 552676696
+	Flags: FA
+	Len: 52
+10.9.0.5:23 > 10.9.0.6:41652
+	Seq: 552676696
+	Ack: 3205692758
+	Flags: A
+	Len: 52
+```
