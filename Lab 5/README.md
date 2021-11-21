@@ -181,6 +181,7 @@ def attack(packet):
 sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack)
 ```
 
+- Kết quả:
 ```sh
 10.9.0.6:41652 > 10.9.0.5:23
 	Seq: 3205692662
@@ -251,3 +252,26 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 	Flags: A
 	Len: 52
 ```
+
+- Từ kết quả của đoạn script trên, t thấy hoạt động của telnet như sau:
+	- Bắt tay 3 bước:
+		- `.6` telnet đến `.5` nên `.6` gửi gói SYN với `seq=...662`
+		- `.5` phản hồi với gói SYN-ACK có `seq=...056` và `ack=...663` (tương đương `...662 + 1`)
+		- `.6` gửi gói ACK có `seq=...663` và `ack=...057` (tương đương `...056 + 1`)
+	- Gửi data.
+		- Trong quá trình này, mỗi bên sẽ gửi 1 gói ACK và 1 gói PSH-ACK cho 1 lần truyền dữ liệu.
+		- Gói ACK sẽ acknowledge cho gói tin trước đó của bên kia, và gói PSH-ACK sẽ gửi data mới cho bên kia.
+		- Điều đặc biệt là gói ACK và PSH-ACK này có cùng `seq` và `ack`.
+		- Bên cạnh đó, quan sát kết quả của script ta thấy rằng, độ dài payload sẽ bằng độ dài của gói IP trừ cho 52. Ví dụ, gói IP có `len=76` thì payload sẽ có độ dài là `76 - 52 = 24 bytes`.
+		```
+		10.9.0.6:41652 > 10.9.0.5:23
+			Seq: 3205692663
+			Ack: 552676057
+			Flags: PA
+			Len: 76
+		10.9.0.5:23 > 10.9.0.6:41652
+			Seq: 552676057
+			Ack: 3205692687
+			Flags: A
+			Len: 52
+		```
