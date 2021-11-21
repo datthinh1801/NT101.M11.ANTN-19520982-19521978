@@ -278,6 +278,8 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 ### Attack
 Từ các thông tin trên, ta có thể thực hiện attack tự động để kết thúc 1 kết nối telnet đang hoạt động như sau:
 - Ta sẽ sniff các gói PSH-ACK, đổi chiều source/destination IP và port.
+	> Ta không nên sniff gói ACK vì gói PSH-ACK sẽ thường được gửi ngay sau gói ACK. Do đó, bên gửi đã update `seq` và `ack` mới. Nếu ta sniff gói ACK và tính `seq` và `ack` dựa trên gói ACK thì `seq` và `ack` này sẽ thuộc vùng giá trị cũ và sẽ bị bỏ qua bởi bên gửi.  
+
 - `seq` của gói RST sẽ bằng `ack` của gói PSH-ACK.
 - `ack` của gói RST sẽ bằng `seq` của gói PSH-ACK + độ dài payload của gói PSH-ACK (`IP.len - 52`).
 - Các trường còn lại như `window`, `chksum` sẽ được tính tự động hoặc sử dụng giá trị mặc định của `scapy`.
