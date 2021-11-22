@@ -284,6 +284,10 @@ Từ các thông tin trên, ta có thể thực hiện attack tự động để
 - `ack` của gói RST sẽ bằng `seq` của gói PSH-ACK + độ dài payload của gói PSH-ACK (`IP.len - 52`).
 - Các trường còn lại như `window`, `chksum` sẽ được tính tự động hoặc sử dụng giá trị mặc định của `scapy`.
 
+
+![image](https://user-images.githubusercontent.com/44528004/142788416-b6667cd7-2b35-4066-b059-7e581a8081d9.png)
+
+
 - Attack script:
 ```python
 #! /bin/python3
