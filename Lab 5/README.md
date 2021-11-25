@@ -335,7 +335,7 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 
 ## Task3: TCP Session Hijacking
 ### Attack
-Từ mô hình của task 2 và tấn công terminate connection thì ta dễ dãng thực hiện inject conmmand bằng cách thay đổi payload của gói PSH-ACK.
+Từ mô hình của task 2 và tấn công terminate connection thì ta dễ dàng thực hiện inject conmmand bằng cách thay đổi payload của gói PSH-ACK.
 
 - Attack Script
 
